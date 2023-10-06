@@ -74,6 +74,7 @@ public class EnemySpawner : Singleton<EnemySpawner>
         enemy.SetStats(enemyScript.BaseStats);
         enemy.SetType(enemyScript.EnemyType);
         enemy.SetPool(_enemyPool);
+        enemy.transform.SetParent(_holder);
         return enemy;
     }
 
