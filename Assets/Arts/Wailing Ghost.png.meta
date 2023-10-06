@@ -1,0 +1,731 @@
+fileFormatVersion: 2
+guid: 627a56ddb5042f14fa846a8a57f8ff28
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Wailing Ghost_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 183
+        width: 54
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c40cd31491931884b8e3c3e5db39b510
+      internalID: 1380873535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wailing Ghost_1
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 183
+        width: 51
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b6ce2f84d3f04447ac3bd1de6cae30c
+      internalID: -505949639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wailing Ghost_2
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 183
+        width: 52
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df6b56ec94dfbfd4c8d346c7c2f64a7a
+      internalID: 1666604928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wailing Ghost_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 183
+        width: 51
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf9129f6d5407ac4cbf7ff148b1bcd9e
+      internalID: 1732228053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wailing Ghost_4
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 183
+        width: 53
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f618fd450e68114aab1f271780f0997
+      internalID: 112113137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wailing Ghost_5
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 183
+        width: 53
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d3e37ed8eaee2c40b892d69e6c033ac
+      internalID: -640464244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wailing Ghost_6
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 183
+        width: 54
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd7649a7d4ce2cf4b917bac3a07abf4e
+      internalID: 1607014515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wailing Ghost_7
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 183
+        width: 51
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5ec99aba887ba840920060dea433054
+      internalID: 1936926883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wailing Ghost_8
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 183
+        width: 52
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c59d5519d3f5bb449a4cf5db7589b109
+      internalID: 5591987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wailing Ghost_9
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 183
+        width: 51
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dee40ed2568780448856ab1f641b5d2e
+      internalID: -1188369502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wailing Ghost_10
+      rect:
+        serializedVersion: 2
+        x: 610
+        y: 183
+        width: 53
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f40d5f2c76a77a4f8d6501dcbf1c9e9
+      internalID: -466569407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wailing Ghost_11
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 183
+        width: 53
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3df4afc98bf688d4499037149728190d
+      internalID: 186110866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wailing Ghost_12
+      rect:
+        serializedVersion: 2
+        x: 729
+        y: 183
+        width: 54
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6746768b51e3bb942b8078334e4fa1e6
+      internalID: -345130403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wailing Ghost_13
+      rect:
+        serializedVersion: 2
+        x: 788
+        y: 183
+        width: 51
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36107cb04829d4e4ebfc3ac9837c39b1
+      internalID: 738830077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wailing Ghost_14
+      rect:
+        serializedVersion: 2
+        x: 846
+        y: 183
+        width: 52
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e2168fe743207141a6812eb55c0958f
+      internalID: -1890178675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wailing Ghost_15
+      rect:
+        serializedVersion: 2
+        x: 905
+        y: 183
+        width: 51
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a37b40f6a3013048bfd8ee056ca6a79
+      internalID: -2004353677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wailing Ghost_16
+      rect:
+        serializedVersion: 2
+        x: 964
+        y: 183
+        width: 53
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76346597db41ce540ba9ccc850867ea3
+      internalID: -1233799453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wailing Ghost_17
+      rect:
+        serializedVersion: 2
+        x: 1025
+        y: 183
+        width: 53
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48345e20fa897e746b99e0a35d59095d
+      internalID: 1876163072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wailing Ghost_18
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 103
+        width: 55
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6420ba06b68d7f648aa86f57ed6cce2f
+      internalID: 1302027691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wailing Ghost_52
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 26
+        width: 51
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2005fc5b0e071a04888a1afd7a675f76
+      internalID: 449766741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wailing Ghost_53
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 26
+        width: 53
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41c2ceec4ae5efd4ba8bfc6cd926514c
+      internalID: 729417234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wailing Ghost_55
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 28
+        width: 54
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6da1616e0de1f8240b842535c0d22325
+      internalID: -2091728830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wailing Ghost_57
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 27
+        width: 65
+        height: 61
+      alignment: 9
+      pivot: {x: 0.28144243, y: 0.57489014}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50f1b85ee797b2b4d9007b4972894bad
+      internalID: -2037257999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wailing Ghost_65
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 20
+        width: 74
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2233d09fa5c71b345be6d74ec34d3efb
+      internalID: 1373021805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wailing Ghost_73
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 20
+        width: 63
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 682d5078c8ff704458d7108ae51c837e
+      internalID: 1270304653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Wailing Ghost_74: -1076145437
+      Wailing Ghost_25: 389219653
+      Wailing Ghost_64: 2022516400
+      Wailing Ghost_62: -1465906764
+      Wailing Ghost_16: -1233799453
+      Wailing Ghost_29: -945437039
+      Wailing Ghost_50: 530777207
+      Wailing Ghost_38: 591124949
+      Wailing Ghost_63: 1540282683
+      Wailing Ghost_19: 63927418
+      Wailing Ghost_11: 186110866
+      Wailing Ghost_1: -505949639
+      Wailing Ghost_13: 738830077
+      Wailing Ghost_57: -2037257999
+      Wailing Ghost_30: -1979520342
+      Wailing Ghost_24: -2123109596
+      Wailing Ghost_4: 112113137
+      Wailing Ghost_15: -2004353677
+      Wailing Ghost_5: -640464244
+      Wailing Ghost_44: 256104836
+      Wailing Ghost_28: -766302858
+      Wailing Ghost_68: 875864504
+      Wailing Ghost_60: 28976229
+      Wailing Ghost_41: 2043635062
+      Wailing Ghost_53: 729417234
+      Wailing Ghost_82: -1685916067
+      Wailing Ghost_66: 321362056
+      Wailing Ghost_70: -595863577
+      Wailing Ghost_12: -345130403
+      Wailing Ghost_23: 2080185952
+      Wailing Ghost_37: 1008518126
+      Wailing Ghost_45: -2010417531
+      Wailing Ghost_52: 449766741
+      Wailing Ghost_79: -1790031361
+      Wailing Ghost_75: -1910667602
+      Wailing Ghost_18: 1302027691
+      Wailing Ghost_33: 878079183
+      Wailing Ghost_20: 1877468073
+      Wailing Ghost_8: 5591987
+      Wailing Ghost_7: 1936926883
+      Wailing Ghost_56: -1444795268
+      Wailing Ghost_0: 1380873535
+      Wailing Ghost_78: -1429640905
+      Wailing Ghost_32: -1338571061
+      Wailing Ghost_67: -638883847
+      Wailing Ghost_34: 705721802
+      Wailing Ghost_2: 1666604928
+      Wailing Ghost_54: 1901877024
+      Wailing Ghost_51: -1121704066
+      Wailing Ghost_55: -2091728830
+      Wailing Ghost_40: 1817808554
+      Wailing Ghost_76: 199211867
+      Wailing Ghost_14: -1890178675
+      Wailing Ghost_58: -2089421921
+      Wailing Ghost_36: -1208287552
+      Wailing Ghost_10: -466569407
+      Wailing Ghost_22: -1858888439
+      Wailing Ghost_27: -2078468938
+      Wailing Ghost_21: 49386980
+      Wailing Ghost_73: 1270304653
+      Wailing Ghost_3: 1732228053
+      Wailing Ghost_49: 921912795
+      Wailing Ghost_35: 1226652171
+      Wailing Ghost_61: -685298326
+      Wailing Ghost_48: -481780992
+      Wailing Ghost_59: 165141544
+      Wailing Ghost_80: 256011998
+      Wailing Ghost_31: 668194751
+      Wailing Ghost_72: 1395410899
+      Wailing Ghost_81: -1546050703
+      Wailing Ghost_43: -1229596807
+      Wailing Ghost_46: -508665449
+      Wailing Ghost_17: 1876163072
+      Wailing Ghost_9: -1188369502
+      Wailing Ghost_6: 1607014515
+      Wailing Ghost_69: -636885308
+      Wailing Ghost_77: 200546292
+      Wailing Ghost_71: 496265024
+      Wailing Ghost_65: 1373021805
+      Wailing Ghost_42: -217442536
+      Wailing Ghost_26: 492390072
+      Wailing Ghost_39: -1780631151
+      Wailing Ghost_47: -1038846364
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
