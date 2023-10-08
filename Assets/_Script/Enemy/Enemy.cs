@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +23,11 @@ public class Enemy : MyMonoBehaviour, IDamageable
         _collider = GetComponent<Collider2D>();
         _controller = GetComponent<EnemyController>();
         base.LoadComponents();
+    }
+
+    public void SetHealth()
+    {
+        _controller.Health.SetHealth(BaseStats.HealthPoint);
     }
 
     public void SetStats(EnemyStats stats) => BaseStats = stats;
