@@ -13,14 +13,14 @@ public class Enemy : MyMonoBehaviour, IDamageable
 
     private Rigidbody2D _rigidbody;
     private Collider2D _collider;
-    private EnemyAnimation _enemyAnimation;
+    private EnemyController _controller;
 
     protected override void LoadComponents()
     {
         // init components here
         _rigidbody = GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
-        _enemyAnimation = GetComponentInChildren<EnemyAnimation>();
+        _controller = GetComponent<EnemyController>();
         base.LoadComponents();
     }
 
@@ -32,7 +32,7 @@ public class Enemy : MyMonoBehaviour, IDamageable
 
     public void TakeDamage(float damage)
     {
-        _enemyAnimation.TriggerAnimationDie();
+        _controller.EnemyAnimation.TriggerAnimationDie();
     }
 
     public void ReleaseEnemy()

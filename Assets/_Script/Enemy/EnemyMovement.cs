@@ -6,23 +6,15 @@ using UnityEngine;
 public class EnemyMovement : MyMonoBehaviour
 {
     [SerializeField] private Kid _target;
-    [SerializeField] private float _movementSpeed = 1f;
     [SerializeField] private SpriteRenderer _spriteRenderer;
+
+    private EnemyController _controller;
 
     protected override void LoadComponents()
     {
         base.LoadComponents();
-        LoadSprite();
-        LoadTarget();
-    }
-
-    private void LoadSprite()
-    {
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-    }
-
-    private void LoadTarget()
-    {
+        _controller = GetComponent<EnemyController>();
         _target = FindAnyObjectByType<Kid>();
     }
 
@@ -33,7 +25,7 @@ public class EnemyMovement : MyMonoBehaviour
 
     private void MoveToTarget()
     {
-        transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, _movementSpeed * Time.fixedDeltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, _controller.Enemy.BaseStats.MovementSpeed * Time.fixedDeltaTime);
         Vector2 direction = _target.transform.position - transform.position;
         FlipBody(direction.x);
     }

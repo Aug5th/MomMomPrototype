@@ -5,13 +5,13 @@ using UnityEngine;
 public class EnemyAnimation : MyMonoBehaviour
 {
     private Animator _animator;
-    private Enemy _enemy;
+    private EnemyController _controller;
     
     protected override void LoadComponents()
     {
         base.LoadComponents();
         _animator = GetComponent<Animator>();
-        _enemy = GetComponentInParent<Enemy>();
+        _controller = GetComponentInParent<EnemyController>();
     }
 
     public void TriggerAnimationDie()
@@ -21,6 +21,6 @@ public class EnemyAnimation : MyMonoBehaviour
 
     public void ReleaseEnemy()
     {
-        _enemy.ReleaseEnemy();
+        _controller.Enemy.ReleaseEnemy();
     }
 }
