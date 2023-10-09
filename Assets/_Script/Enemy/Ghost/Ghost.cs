@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDamageable
+public class Ghost : Enemy
 {
-    void TakeDamage(float damage);
+    
 }

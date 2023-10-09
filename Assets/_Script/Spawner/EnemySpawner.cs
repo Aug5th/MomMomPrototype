@@ -5,7 +5,7 @@ using UnityEngine.Pool;
 public class EnemySpawner : Singleton<EnemySpawner>
 {
     [SerializeField] private List<Transform> _spawnPoints;
-    [SerializeField] private int quantityPerPoint;
+    [SerializeField] private int _quantityPerPoint;
     [SerializeField] private Transform _holder;
 
     private ObjectPool<Enemy> _enemyPool;
@@ -83,7 +83,7 @@ public class EnemySpawner : Singleton<EnemySpawner>
     {
         foreach (var point in _spawnPoints)
         {
-            for (int i = 0; i < quantityPerPoint; i++)
+            for (int i = 0; i < _quantityPerPoint; i++)
             {
                 Vector3 randomPoint = Helper.RandomPositionInCircle(point.position,(int)point.localScale.x);
                 SpawnEnemy(randomPoint);

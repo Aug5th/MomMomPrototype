@@ -613,7 +613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnPoints: []
-  quantityPerPoint: 3
+  _quantityPerPoint: 3
   _holder: {fileID: 0}
 --- !u!1 &519420028
 GameObject:

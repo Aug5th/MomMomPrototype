@@ -15,12 +15,11 @@ public class EnemyAttack : MyMonoBehaviour
     protected void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Enemy Attack");
-        if (collision.tag == "Kid")
+        if (collision.CompareTag("Kid"))
         {
             Attack();
         }
     }
-
     protected virtual void Attack()
     {
 

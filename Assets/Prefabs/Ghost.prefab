@@ -205,11 +205,11 @@ GameObject:
   - component: {fileID: 2346863457964000780}
   - component: {fileID: 5043690702506694566}
   - component: {fileID: 4786623630920949150}
-  - component: {fileID: 5005407731950172999}
-  - component: {fileID: 2493401611879441716}
   - component: {fileID: 2698457199532372103}
   - component: {fileID: 6091172393091898354}
   - component: {fileID: 8282275571645244296}
+  - component: {fileID: 2588784557694098426}
+  - component: {fileID: 8866834454464755988}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Enemy
@@ -281,32 +281,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &5005407731950172999
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2346863457964000783}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d51be506a85de14498b7eb833a621529, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2493401611879441716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2346863457964000783}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d94ed833b88a21d4db10194b056cb27b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _target: {fileID: 0}
-  _spriteRenderer: {fileID: 0}
 --- !u!114 &2698457199532372103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,7 +294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyAnimation: {fileID: 148991342564726187}
-  _enemy: {fileID: 5005407731950172999}
+  _enemy: {fileID: 0}
   _health: {fileID: 0}
 --- !u!114 &6091172393091898354
 MonoBehaviour:
@@ -348,6 +322,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _currentHealth: 0
   _maxHealth: 0
+--- !u!114 &2588784557694098426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2346863457964000783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf07f53bfe7f1484a9db16abefdd884d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8866834454464755988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2346863457964000783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d94ed833b88a21d4db10194b056cb27b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 0}
+  _spriteRenderer: {fileID: 2346863457826136837}
 --- !u!1 &3834274724363407714
 GameObject:
   m_ObjectHideFlags: 0

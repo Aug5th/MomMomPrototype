@@ -21,4 +21,4 @@ MonoBehaviour:
     MovementSpeed: 1
     AttackPlayerOnly: 1
   EnemyType: 1
-  Prefab: {fileID: 5005407731950172999, guid: a2127378f7383da40ad08dd6ce794c8e, type: 3}
+  Prefab: {fileID: 2588784557694098426, guid: a2127378f7383da40ad08dd6ce794c8e, type: 3}

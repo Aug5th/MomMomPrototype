@@ -4,17 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class Enemy : MyMonoBehaviour, IDamageable
+public class Enemy : MyMonoBehaviour
 {
     public EnemyStats BaseStats { get; private set; }
     public EnemyType EnemyType { get; private set; }
-    
 
     private ObjectPool<Enemy> _enemyPool;
 
-    private Rigidbody2D _rigidbody;
-    private Collider2D _collider;
-    private EnemyController _controller;
+    protected Rigidbody2D _rigidbody;
+    protected Collider2D _collider;
+    protected EnemyController _controller;
 
     protected override void LoadComponents()
     {
@@ -35,11 +34,6 @@ public class Enemy : MyMonoBehaviour, IDamageable
     public void SetType(EnemyType type) => EnemyType = type;
 
     public void SetPool(ObjectPool<Enemy> enemyPool) => _enemyPool = enemyPool;
-
-    public void TakeDamage(float damage)
-    {
-        _controller.EnemyAnimation.TriggerAnimationDie();
-    }
 
     public void ReleaseEnemy()
     {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health : MyMonoBehaviour
+public class Health : MyMonoBehaviour, IDamageable
 {
     [SerializeField] private float _currentHealth;
     [SerializeField] private float _maxHealth;
@@ -14,6 +14,11 @@ public class Health : MyMonoBehaviour
     {
         _currentHealth = maxHealth;
         _maxHealth = maxHealth;
+    }
+
+    public void TakeDamage(float damage)
+    {
+        UpdateHealth(-damage);
     }
 
     public void UpdateHealth(float amount)
