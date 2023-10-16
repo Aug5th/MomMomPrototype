@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ef7394e0f412d945a559f4a9075a48f, type: 3}
-  m_Name: Ghost
+  m_Name: Snake
   m_EditorClassIdentifier: 
   _stats:
-    HealthPoint: 10
-    Power: 0
-    AttackSpeed: 0
-    AttackRange: 0
+    HealthPoint: 50
+    Power: 2
+    AttackSpeed: 1
+    AttackRange: 0.5
     MovementSpeed: 1
-    AttackPlayerOnly: 1
-  EnemyType: 2
-  Prefab: {fileID: 2588784557694098426, guid: a2127378f7383da40ad08dd6ce794c8e, type: 3}
+    AttackPlayerOnly: 0
+  EnemyType: 1
+  Prefab: {fileID: 92273576176191310, guid: 63d3ae81c9fabc04c8106d6e3226c964, type: 3}

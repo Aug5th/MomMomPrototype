@@ -1,14 +1,17 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
 public class EnemySpawner : Singleton<EnemySpawner>
 {
-    [SerializeField] private List<Transform> _spawnPoints;
-    [SerializeField] private int _quantityPerPoint;
+    [SerializeField] private List<Transform> _ghostSpawnPoints;
+    [SerializeField] private List<Transform> _snakeSpawnPoints;
+    [SerializeField] private int _numberGhostPerPoint = 3;
     [SerializeField] private Transform _holder;
 
-    private ObjectPool<Enemy> _enemyPool;
+    private ObjectPool<Enemy> _ghostPool;
+    private ObjectPool<Enemy> _snakePool;
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -18,17 +21,40 @@ public class EnemySpawner : Singleton<EnemySpawner>
 
     private void LoadSpawnLocations()
     {
-        if(_spawnPoints.Count > 0)
+        LoadGhostSpawnLocation();
+        LoadSnakeSpawnLocation();
+    }
+
+    private void LoadGhostSpawnLocation()
+    {
+        if (_ghostSpawnPoints.Count > 0)
         {
             return;
         }
 
-        Transform spawnPoints = transform.Find("Spawn Points"); 
+        Transform spawnPoints = transform.Find("Ghost Spawn Points");
         if (spawnPoints)
         {
             foreach (Transform spawnPoint in spawnPoints)
             {
-                _spawnPoints.Add(spawnPoint);
+                _ghostSpawnPoints.Add(spawnPoint);
+            }
+        }
+    }
+
+    private void LoadSnakeSpawnLocation()
+    {
+        if (_snakeSpawnPoints.Count > 0)
+        {
+            return;
+        }
+
+        Transform spawnPoints = transform.Find("Snake Spawn Points");
+        if (spawnPoints)
+        {
+            foreach (Transform spawnPoint in spawnPoints)
+            {
+                _snakeSpawnPoints.Add(spawnPoint);
             }
         }
     }
@@ -44,49 +70,92 @@ public class EnemySpawner : Singleton<EnemySpawner>
 
     private void Start()
     {
-        InitEnemyPool();
-        SpawnEnemies();
+        InitGhostPool();
+        InitSnakePool();
+        SpawnGhosts();
+        SpawnSnakes();
     }
 
-    private void InitEnemyPool()
+    private void InitSnakePool()
     {
-        _enemyPool = new ObjectPool<Enemy>(() =>
+        _snakePool = new ObjectPool<Enemy>(() =>
         {
-            var enemyScript = ResourceSystem.Instance.GetEnemy(EnemyType.Ghost);
-            return Instantiate(enemyScript.Prefab);
-        }, enemy =>
+            var snakeScript = ResourceSystem.Instance.GetEnemy(EnemyType.Snake);
+            return Instantiate(snakeScript.Prefab);
+        }, snake =>
         {
-            enemy.gameObject.SetActive(true);
-        }, enemy =>
+            snake.gameObject.SetActive(true);
+        }, snake =>
         {
-            enemy.gameObject.SetActive(false);
-        },enemy =>
+            snake.gameObject.SetActive(false);
+        }, snake =>
         {
-            Destroy(enemy.gameObject);
+            Destroy(snake.gameObject);
+        }, false, 15, 20);
+    }
+
+    private void InitGhostPool()
+    {
+        _ghostPool = new ObjectPool<Enemy>(() =>
+        {
+            var ghostScript = ResourceSystem.Instance.GetEnemy(EnemyType.Ghost);
+            return Instantiate(ghostScript.Prefab);
+        }, ghost =>
+        {
+            ghost.gameObject.SetActive(true);
+        }, ghost =>
+        {
+            ghost.gameObject.SetActive(false);
+        }, ghost =>
+        {
+            Destroy(ghost.gameObject);
         }, false,15,20);
     }
 
-    private Enemy SpawnEnemy(Vector3 position)
+    private Enemy GetEnemy(EnemyType enemyType)
     {
-        var enemy = _enemyPool.Get();
+        switch (enemyType)
+        {
+            case EnemyType.None:
+                return null;
+            case EnemyType.Snake:
+                return _snakePool.Get();
+            case EnemyType.Ghost:
+                return _ghostPool.Get();
+            case EnemyType.Spider:
+                return null;
+        }
+        return null;
+    }
+
+    private Enemy SpawnEnemy(EnemyType enemyType,Vector3 position)
+    {
+        var enemy = GetEnemy(enemyType);
         enemy.transform.SetPositionAndRotation(position, Quaternion.identity);
-        var enemyScript = ResourceSystem.Instance.GetEnemy(EnemyType.Ghost);
+        var enemyScript = ResourceSystem.Instance.GetEnemy(enemyType);
         enemy.SetStats(enemyScript.BaseStats);
         enemy.SetHealth();
         enemy.SetType(enemyScript.EnemyType);
-        enemy.SetPool(_enemyPool);
+        enemy.SetPool(_ghostPool);
         enemy.transform.SetParent(_holder);
         return enemy;
     }
 
-    private void SpawnEnemies()
+    private void SpawnSnakes()
     {
-        foreach (var point in _spawnPoints)
+        foreach (var point in _snakeSpawnPoints)
         {
-            for (int i = 0; i < _quantityPerPoint; i++)
+            SpawnEnemy(EnemyType.Snake,point.position);
+        }
+    }
+    private void SpawnGhosts()
+    {
+        foreach (var point in _ghostSpawnPoints)
+        {
+            for (int i = 0; i < _numberGhostPerPoint; i++)
             {
                 Vector3 randomPoint = Helper.RandomPositionInCircle(point.position,(int)point.localScale.x);
-                SpawnEnemy(randomPoint);
+                SpawnEnemy(EnemyType.Ghost,randomPoint);
             }
         }
     }

@@ -7,8 +7,7 @@ using UnityEngine;
 public class EnemyScriptableObject : ScriptableObject
 {
     [SerializeField] private EnemyStats _stats;
-    public EnemyStats BaseStats
-        => _stats;
+    public EnemyStats BaseStats => _stats;
 
     public EnemyType EnemyType;
 
@@ -19,7 +18,6 @@ public class EnemyScriptableObject : ScriptableObject
 public struct EnemyStats
 {
     public float HealthPoint;
-    public float Armor;
     public float Power;
     public float AttackSpeed;
     public float AttackRange;
@@ -30,7 +28,7 @@ public struct EnemyStats
 public enum EnemyType
 {
     None = 0,
-    Ghost = 1,
-    Tanker = 2,
-    Melee = 3
+    Snake = 1,
+    Ghost = 2,
+    Spider = 3
 }
