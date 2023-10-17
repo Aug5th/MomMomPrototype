@@ -23,23 +23,9 @@ public class Toy : MyMonoBehaviour
         _controller = GetComponent<ToyController>();
     }
 
-    private void Start()
-    {
-        InitializeToy();
-    }
-
     public void SetHealth()
     {
         _controller.Health.SetHealth(BaseStats.HealthPoint);
-    }
-
-    private void InitializeToy()
-    {
-        //var toyScript = ResourceSystem.Instance.GetToy(ToyType.Knight);
-        //var toy = toyScript.Prefab;
-        //SetStats(toy.BaseStats);
-        //SetType(toy.ToyType);
-        //SetHealth();
     }
 
     public void SetStats(ToyStats stats) => BaseStats = stats;

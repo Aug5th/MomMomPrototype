@@ -19,6 +19,17 @@ public class EnemyAnimation : MyMonoBehaviour
         _animator.SetTrigger("die");
     }
 
+    public void TriggerAnimationAttack()
+    {
+        _animator.SetBool("isAttack",true);
+    }
+
+    public void EndAttack()
+    {
+        _animator.SetBool("isAttack", false);
+        _controller.EnemyAttack.EndAttack();
+    }
+
     public void ReleaseEnemy()
     {
         _controller.Enemy.ReleaseEnemy();

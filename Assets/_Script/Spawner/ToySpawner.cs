@@ -20,10 +20,7 @@ public class ToySpawner : Singleton<ToySpawner>
 
     private void LoadSpawnLocations()
     {
-        if (_spawnPoints.Count > 0)
-        {
-            return;
-        }
+        _spawnPoints.Clear();
 
         Transform spawnPoints = transform.Find("Spawn Points");
         if (spawnPoints)

@@ -18,6 +18,7 @@ public class Health : MyMonoBehaviour, IDamageable
 
     public void TakeDamage(float damage)
     {
+        Debug.Log("Take Damage : " + damage);
         UpdateHealth(-damage);
     }
 

@@ -4,24 +4,15 @@ using UnityEngine;
 
 public class EnemyAttack : MyMonoBehaviour
 {
-    protected EnemyController _controller;
-
+    protected EnemyController controller;
+    [SerializeField] protected Transform attackPoint;
     protected override void LoadComponents()
     {
         base.LoadComponents();
-        _controller = GetComponent<EnemyController>();
+        controller = GetComponent<EnemyController>();
+        attackPoint = transform.Find("AttackPoint");
     }
 
-    protected void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log("Enemy Attack");
-        if (collision.CompareTag("Kid"))
-        {
-            Attack();
-        }
-    }
-    protected virtual void Attack()
-    {
-
-    }
+    public virtual void StartAttack() { }
+    public virtual void EndAttack() { }
 }

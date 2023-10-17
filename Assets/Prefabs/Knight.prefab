@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1296686691153704901}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 2887437936547201022}
   - component: {fileID: 3433038600866485582}
   - component: {fileID: 3770670396611697699}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 7412225089789501390}
   - component: {fileID: 3574525901849909564}
   - component: {fileID: 6572024564216380581}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2083948803809364287}
   - component: {fileID: 9213921426020063882}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -292,7 +292,7 @@ GameObject:
   - component: {fileID: 4623904459663749517}
   - component: {fileID: 8813459734659211593}
   - component: {fileID: 4950735447952179871}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -409,9 +409,9 @@ GameObject:
   - component: {fileID: 3416789631971432182}
   - component: {fileID: 3416789631971432183}
   - component: {fileID: 8451473691900376571}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Knight
-  m_TagString: Enemy
+  m_TagString: Toy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -533,7 +533,7 @@ GameObject:
   - component: {fileID: 9010530981303031419}
   - component: {fileID: 9010530981303031416}
   - component: {fileID: 6884605192969164048}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

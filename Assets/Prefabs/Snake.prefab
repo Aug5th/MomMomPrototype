@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 6393530275043083360}
   - component: {fileID: 6030838243772733260}
   - component: {fileID: 92273576176191310}
-  m_Layer: 0
+  - component: {fileID: 150636439166002293}
+  m_Layer: 8
   m_Name: Snake
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -35,6 +36,8 @@ Transform:
   m_Children:
   - {fileID: 782315477312144626}
   - {fileID: 3379576050362871518}
+  - {fileID: 5355508480362477503}
+  - {fileID: 586558646955360556}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -51,7 +54,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.004835427, y: 0.0024176538}
+  m_Offset: {x: -0.0013970435, y: -0.004459083}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -62,7 +65,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.15865362, y: 0.24085408}
+  m_Size: {x: 0.15177685, y: 0.14114118}
   m_EdgeRadius: 0
 --- !u!50 &7505087140097817206
 Rigidbody2D:
@@ -113,6 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyAnimation: {fileID: 2908127988354953795}
   _enemy: {fileID: 0}
+  _enemyAttack: {fileID: 0}
   _health: {fileID: 6393530275043083360}
 --- !u!114 &92273576176191310
 MonoBehaviour:
@@ -126,6 +130,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 589a08f4dfcbdc44091736ce0a8f5543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &150636439166002293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782315477172183527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56094cc9baaaa25468ee97501eb58c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPoint: {fileID: 0}
+  _canAttack: 1
+  _targetLaymask:
+    serializedVersion: 2
+    m_Bits: 128
+  AttackRange: 2
 --- !u!1 &782315477312144620
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,7 +160,7 @@ GameObject:
   - component: {fileID: 782315477312144621}
   - component: {fileID: 2908127988354953795}
   - component: {fileID: 2908127988354953794}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,7 +174,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 782315477312144620}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -254,7 +276,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7726819739098110889}
   - component: {fileID: 580662261766047772}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -347,7 +369,7 @@ GameObject:
   - component: {fileID: 4034074505282921243}
   - component: {fileID: 981559416657621983}
   - component: {fileID: 3703096136569769993}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -461,7 +483,7 @@ GameObject:
   - component: {fileID: 1228641067308879192}
   - component: {fileID: 5065359524432530346}
   - component: {fileID: 3234715369155407411}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -526,6 +548,85 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &3432348577780234233
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 586558646955360556}
+  - component: {fileID: 4629706247823554560}
+  m_Layer: 8
+  m_Name: AttackDistance
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &586558646955360556
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3432348577780234233}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 782315477172183524}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &4629706247823554560
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3432348577780234233}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.15
+--- !u!1 &3535440062453594202
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5355508480362477503}
+  m_Layer: 8
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5355508480362477503
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3535440062453594202}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.1, y: 0.038, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 782315477172183524}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4890514814097385229
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,7 +638,7 @@ GameObject:
   - component: {fileID: 6900284808365272424}
   - component: {fileID: 6373749691709573080}
   - component: {fileID: 4865186427452526261}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -611,7 +712,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7362893174587680083}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}

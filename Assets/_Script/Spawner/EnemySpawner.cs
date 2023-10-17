@@ -27,10 +27,7 @@ public class EnemySpawner : Singleton<EnemySpawner>
 
     private void LoadGhostSpawnLocation()
     {
-        if (_ghostSpawnPoints.Count > 0)
-        {
-            return;
-        }
+        _ghostSpawnPoints.Clear();
 
         Transform spawnPoints = transform.Find("Ghost Spawn Points");
         if (spawnPoints)
@@ -44,10 +41,7 @@ public class EnemySpawner : Singleton<EnemySpawner>
 
     private void LoadSnakeSpawnLocation()
     {
-        if (_snakeSpawnPoints.Count > 0)
-        {
-            return;
-        }
+        _snakeSpawnPoints.Clear();
 
         Transform spawnPoints = transform.Find("Snake Spawn Points");
         if (spawnPoints)

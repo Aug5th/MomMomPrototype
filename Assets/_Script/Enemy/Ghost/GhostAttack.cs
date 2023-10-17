@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class GhostAttack : EnemyAttack
 {
-    protected override void Attack()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        base.Attack();
-        _controller.Health.UpdateHealth(-100);
+        Debug.Log("Enemy start attack");
+        if (collision.CompareTag("Kid"))
+        {
+            StartAttack();
+        }
+    }
+    public override void StartAttack()
+    {
+        base.StartAttack();
+        controller.Health.UpdateHealth(-100);
 
-        _controller.EnemyAnimation.TriggerAnimationDie();
+        controller.EnemyAnimation.TriggerAnimationDie();
     }
 }
