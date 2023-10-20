@@ -8,22 +8,14 @@ public class HealthBar : MyMonoBehaviour
 {
     [SerializeField] private Slider _slider;
 
-    [SerializeField] private Health _health;
-
     protected override void LoadComponents()
     {
         base.LoadComponents();
         _slider = GetComponentInChildren<Slider>();
-        _health = GetComponentInParent<Health>();
     }
 
-    private void FixedUpdate()
+    public void UpdateHealthBar(float currentHealth, float maxHealth)
     {
-        UpdateHealthBar();
-    }
-
-    private void UpdateHealthBar()
-    {
-        _slider.value = _health.CurrentHealth / _health.MaxHealth;
+        _slider.value = currentHealth / maxHealth;
     }
 }

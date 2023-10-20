@@ -4,15 +4,34 @@ using UnityEngine;
 
 public class ToyAnimation : MyMonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Animator _animator;
+    private ToyController _controller;
+
+    protected override void LoadComponents()
     {
-        
+        base.LoadComponents();
+        _animator = GetComponent<Animator>();
+        _controller = GetComponentInParent<ToyController>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void TriggerAnimationDie()
     {
-        
+        _animator.SetTrigger("die");
+    }
+
+    public void TriggerAnimationAttack()
+    {
+        _animator.SetBool("isAttack", true);
+    }
+
+    public void EndAttack()
+    {
+        _animator.SetBool("isAttack", false);
+        //_controller.EnemyAttack.EndAttack();
+    }
+
+    public void ReleaseToyEvent()
+    {
+        _controller.Toy.ReleaseToy();
     }
 }

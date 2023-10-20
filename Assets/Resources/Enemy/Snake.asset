@@ -15,9 +15,9 @@ MonoBehaviour:
   _stats:
     HealthPoint: 50
     Power: 2
-    AttackSpeed: 2
-    AttackRange: 0.5
-    MovementSpeed: 1
+    AttackSpeed: 1.5
+    AttackRange: 0.1
+    MovementSpeed: 0.5
     AttackPlayerOnly: 0
   EnemyType: 1
-  Prefab: {fileID: 92273576176191310, guid: 63d3ae81c9fabc04c8106d6e3226c964, type: 3}
+  Prefab: {fileID: 7145785742584283507, guid: 63d3ae81c9fabc04c8106d6e3226c964, type: 3}

@@ -128,7 +128,6 @@ public class EnemySpawner : Singleton<EnemySpawner>
         enemy.transform.SetPositionAndRotation(position, Quaternion.identity);
         var enemyScript = ResourceSystem.Instance.GetEnemy(enemyType);
         enemy.SetStats(enemyScript.BaseStats);
-        enemy.SetHealth();
         enemy.SetType(enemyScript.EnemyType);
         enemy.SetPool(_ghostPool);
         enemy.transform.SetParent(_holder);

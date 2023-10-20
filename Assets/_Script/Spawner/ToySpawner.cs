@@ -60,7 +60,6 @@ public class ToySpawner : Singleton<ToySpawner>
         knight.transform.SetPositionAndRotation(position, Quaternion.identity);
         var toyScript = ResourceSystem.Instance.GetToy(ToyType.Knight);
         knight.SetStats(toyScript.BaseStats);
-        knight.SetHealth();
         knight.SetType(toyScript.ToyType);
         knight.SetPool(_knightPool);
         knight.transform.SetParent(_holder);
