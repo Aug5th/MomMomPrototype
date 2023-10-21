@@ -87,7 +87,6 @@ GameObject:
   - component: {fileID: 2346863457826136858}
   - component: {fileID: 2346863457826136837}
   - component: {fileID: 2346863457826136859}
-  - component: {fileID: 818580296349646918}
   m_Layer: 8
   m_Name: Model
   m_TagString: Untagged
@@ -182,18 +181,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &818580296349646918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2346863457826136836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f5843fa7e436f742b57c2edea2e60b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2346863457964000783
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,11 +192,6 @@ GameObject:
   - component: {fileID: 2346863457964000780}
   - component: {fileID: 5043690702506694566}
   - component: {fileID: 4786623630920949150}
-  - component: {fileID: 2698457199532372103}
-  - component: {fileID: 6091172393091898354}
-  - component: {fileID: 2588784557694098426}
-  - component: {fileID: 8866834454464755988}
-  - component: {fileID: 6406011077076912487}
   m_Layer: 8
   m_Name: Ghost
   m_TagString: Enemy
@@ -281,73 +263,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &2698457199532372103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2346863457964000783}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19987357b76f86040b91d3657554f5a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enemy: {fileID: 0}
-  _enemyAnimation: {fileID: 0}
-  _enemyAttack: {fileID: 0}
-  _enemyMovement: {fileID: 0}
-  _healthBar: {fileID: 0}
---- !u!114 &6091172393091898354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2346863457964000783}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1bf32dffd9261d408b8d3e3c786612c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackPoint: {fileID: 0}
---- !u!114 &2588784557694098426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2346863457964000783}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf07f53bfe7f1484a9db16abefdd884d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8866834454464755988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2346863457964000783}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d94ed833b88a21d4db10194b056cb27b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rigidBody: {fileID: 0}
---- !u!114 &6406011077076912487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2346863457964000783}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f5843fa7e436f742b57c2edea2e60b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3834274724363407714
 GameObject:
   m_ObjectHideFlags: 0

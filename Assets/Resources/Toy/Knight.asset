@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stats:
     HealthPoint: 20
-    Power: 3
-    AttackSpeed: 1
-    AttackRange: 0.5
+    Power: 5
+    AttackSpeed: 2
+    AttackRange: 0.15
     MovementSpeed: 1
   ToyType: 2
-  Prefab: {fileID: 3416789631971432183, guid: b01a106b9f5586a4699a7ea95341f98d, type: 3}
+  Prefab: {fileID: 6012594058053379359, guid: b01a106b9f5586a4699a7ea95341f98d, type: 3}
