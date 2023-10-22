@@ -28,10 +28,6 @@ public class EnemyIdleState : EnemyState
     public override void FrameUpdate()
     {
         enemy.Move(Vector2.zero);
-        if (enemy.IsHavingTarget)
-        {
-            enemyStateMachine.ChangeState(enemy.ChaseState);
-        }
         base.FrameUpdate();
     }
 

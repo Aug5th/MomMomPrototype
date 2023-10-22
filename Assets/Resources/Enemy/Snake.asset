@@ -18,6 +18,6 @@ MonoBehaviour:
     AttackSpeed: 1.5
     AttackRange: 0.1
     MovementSpeed: 0.5
-    AttackPlayerOnly: 0
+    OnlyChaseKid: 0
   EnemyType: 1
   Prefab: {fileID: 7145785742584283507, guid: 63d3ae81c9fabc04c8106d6e3226c964, type: 3}

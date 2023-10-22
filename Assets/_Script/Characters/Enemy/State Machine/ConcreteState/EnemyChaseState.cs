@@ -34,11 +34,6 @@ public class EnemyChaseState : EnemyState
         {
             enemyStateMachine.ChangeState(enemy.AttackState);
         }
-
-        if(!enemy.IsHavingTarget)
-        {
-            enemyStateMachine.ChangeState(enemy.IdleState);
-        }
     }
 
     public override void PhysicsUpdate()
