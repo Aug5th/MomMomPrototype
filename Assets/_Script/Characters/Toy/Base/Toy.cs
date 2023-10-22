@@ -92,7 +92,7 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     #region Damageable
     public void TakeDamage(float damage)
     {
-        Debug.Log("Toy Take Damage" + damage);
+        Debug.Log("Toy Take Damage : " + damage);
         CurrentHealth -= damage;
         UpdateHealthBar();
         if (CurrentHealth <= 0f)

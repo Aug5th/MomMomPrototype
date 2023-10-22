@@ -15,7 +15,7 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     public bool IsFacingRight { get; set; } = true;
     public bool IsWithinAttackDistance { get; set; }
     public Transform Target { get; set; }
-    public bool IsHavingTarget { get; set; }
+    public bool IsChasingKid { get; set; }
 
     protected Collider2D _collider;
 
@@ -141,23 +141,32 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
 
     private void FindTarget()
     {
-        GameObject[] allTargets = GameObject.FindGameObjectsWithTag("Toy");
-        if (allTargets.Length > 0)
+        if(BaseStats.OnlyChaseKid)
         {
-            Target = allTargets[0].transform;
-            foreach (GameObject target in allTargets)
-            {
-                if (Vector2.Distance(transform.position, target.transform.position) < Vector2.Distance(transform.position, Target.transform.position))
-                {
-                    Target = target.transform;
-                }
-            }
-            IsHavingTarget = true;
+            Target = Kid.Instance.Transform;
+            IsChasingKid = true;
         }
         else
         {
-            IsHavingTarget = false;
-        }
+            GameObject[] allTargets = GameObject.FindGameObjectsWithTag("Toy");
+            if (allTargets.Length > 0)
+            {
+                Target = allTargets[0].transform;
+                foreach (GameObject target in allTargets)
+                {
+                    if (Vector2.Distance(transform.position, target.transform.position) < Vector2.Distance(transform.position, Target.transform.position))
+                    {
+                        Target = target.transform;
+                    }
+                }
+                IsChasingKid = false;
+            }
+            else
+            {
+                Target = Kid.Instance.Transform;
+                IsChasingKid = true;
+            }
+        }        
     }
 
     #endregion

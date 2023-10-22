@@ -22,7 +22,7 @@ public struct EnemyStats
     public float AttackSpeed;
     public float AttackRange;
     public float MovementSpeed;
-    public bool  AttackPlayerOnly;
+    public bool  OnlyChaseKid;
 }
 
 public enum EnemyType

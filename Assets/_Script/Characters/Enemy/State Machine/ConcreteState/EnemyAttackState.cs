@@ -14,7 +14,6 @@ public class EnemyAttackState : EnemyState
     {
         _targetLayerMask = LayerMask.GetMask("Toy");
         _attackPoint = enemy.transform.Find("AttackPoint");
-        _timer = enemy.BaseStats.AttackSpeed + 1f;
     }
 
     public override void AnimationCallbackEvent(Enemy.AnimationTriggerType triggerType)
@@ -29,6 +28,9 @@ public class EnemyAttackState : EnemyState
     public override void EnterState()
     {
         base.EnterState();
+        _timer = enemy.BaseStats.AttackSpeed + 1f;
+        enemy.Move(Vector2.zero);
+        enemy.TriggerAnimation(Enemy.AnimationTriggerType.EnemyIdle);
     }
 
     public override void ExitState()
@@ -39,8 +41,7 @@ public class EnemyAttackState : EnemyState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-        enemy.Move(Vector2.zero);
-        enemy.TriggerAnimation(Enemy.AnimationTriggerType.EnemyIdle);
+        UpdateTargetLayerMark();
         StartAttack();
         if (!enemy.IsWithinAttackDistance)
         {
@@ -62,7 +63,19 @@ public class EnemyAttackState : EnemyState
             enemy.TriggerAnimation(Enemy.AnimationTriggerType.EnemyAttack);
         }
         _timer += Time.deltaTime;
-        
+    }
+
+    private void UpdateTargetLayerMark()
+    {
+        if(enemy.IsChasingKid)
+        {
+            _targetLayerMask = LayerMask.GetMask("Kid");
+        }
+        else
+        {
+            _targetLayerMask = LayerMask.GetMask("Toy");
+        }
+       
     }
 
     public void EndAttack()
