@@ -34,7 +34,7 @@ public class Kid : Singleton<Kid> , IDamageable , IMoveable
     {
         // Kid only take maximum 1 damage each.
         CurrentHealth -= 1f;
-        OnUpdatePlayerHealth?.Invoke(CurrentHealth, MaxHealth);
+        UpdatePlayerHeart();
         if (CurrentHealth <= 0f)
         {
             Die();
@@ -51,6 +51,16 @@ public class Kid : Singleton<Kid> , IDamageable , IMoveable
         base.LoadComponents();
         Transform = transform;
         CurrentHealth = MaxHealth = _healthPoint;
+        
+    }
+
+    private void Start()
+    {
+        UpdatePlayerHeart();
+    }
+
+    private void UpdatePlayerHeart()
+    {
         OnUpdatePlayerHealth?.Invoke(CurrentHealth, MaxHealth);
     }
 
