@@ -9,6 +9,8 @@ TagManager:
   - Toy
   - Flag
   - Placement
+  - CollisionObjects
+  - Floor
   layers:
   - Default
   - TransparentFX
@@ -20,8 +22,8 @@ TagManager:
   - Toy
   - Enemy
   - Placement
-  - 
-  - 
+  - CollisionObjects
+  - Floor
   - 
   - 
   - 
