@@ -1,0 +1,83 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class GameManager : Singleton<GameManager>
+{
+
+    public GameState GameState;
+    public static event Action<GameState> OnStateChanged;
+
+    [SerializeField] private GameObject _phaseOnePanel;
+    [SerializeField] private GameObject _phaseTwoPanel;
+    [SerializeField] private GameObject _phaseOneCamera;
+    [SerializeField] private GameObject _phaseTwoCamera;
+
+
+    private void Start()
+    {
+        UpdateGameState(GameState.PhaseOne);
+    }
+    public void UpdateGameState(GameState newState)
+    {
+        GameState = newState;
+        switch (newState)
+        {
+            case GameState.PhaseOne:
+                HandlePhaseOneState();
+                break;
+            case GameState.PhaseTwo:
+                HandlePhaseTwoState();
+                break;
+            case GameState.Lose:
+                HandleLoseState();
+                break;
+            case GameState.Victory:
+                HandleVictoryState();
+                break;
+            default:
+                break;
+        }
+        OnStateChanged?.Invoke(newState);
+    }
+
+    public void SwitchState()
+    {
+
+    }
+
+    private void HandleVictoryState()
+    {
+        
+    }
+
+    private void HandleLoseState()
+    {
+        
+    }
+
+    private void HandlePhaseTwoState()
+    {
+        _phaseOnePanel.SetActive(false);
+        _phaseOneCamera.SetActive(false);
+        _phaseTwoPanel.SetActive(true);
+        _phaseTwoCamera.SetActive(true);
+    }
+
+    private void HandlePhaseOneState()
+    {
+        _phaseOnePanel.SetActive(true);
+        _phaseOneCamera.SetActive(true);
+        _phaseTwoPanel.SetActive(false);
+        _phaseTwoCamera.SetActive(false);
+    }
+}
+
+public enum GameState
+{
+    PhaseOne = 0,
+    PhaseTwo = 1,
+    Lose = 2,
+    Victory = 3,
+}
