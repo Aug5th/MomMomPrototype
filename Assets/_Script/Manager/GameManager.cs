@@ -70,6 +70,16 @@ public class GameManager : Singleton<GameManager>
         _phaseTwoPanel.SetActive(false);
         _phaseTwoCamera.SetActive(false);
     }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+    }
 }
 
 public enum GameState

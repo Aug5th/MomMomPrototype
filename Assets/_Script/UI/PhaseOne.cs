@@ -23,11 +23,11 @@ public class PhaseOne : MonoBehaviour
 
     public void Pause()
     {
-        Time.timeScale = 0f;
+        GameManager.Instance.PauseGame();
     }
 
     public void Resume()
     {
-        Time.timeScale = 1f;
+        GameManager.Instance.ResumeGame();
     }
 }

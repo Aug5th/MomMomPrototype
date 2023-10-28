@@ -11,7 +11,7 @@ public class PathSystem : Singleton<PathSystem>
     private int _currentFlag;
     static private Vector3 _currentPosition;
 
-    private bool _pathfollowing = false;
+    public bool PathFollowing = false;
 
 
     private void Update() {
@@ -20,7 +20,7 @@ public class PathSystem : Singleton<PathSystem>
 
     private void MovePlayer()
     {
-        if (_pathfollowing)
+        if (PathFollowing)
         {
             if (Kid.Instance.transform.position != _currentPosition)
             {
@@ -40,13 +40,17 @@ public class PathSystem : Singleton<PathSystem>
                 Kid.Instance.StopMoving();
             }
         }
+        else
+        {
+            Kid.Instance.StopMoving();
+        }
     }
 
     public void BeginPath() // Begin walking
     {
         _pathFlags = GetComponentsInChildren<Flag>();
         CheckFlag();
-        _pathfollowing = true;
+        PathFollowing = true;
     }
     private void CheckFlag() // Get the next walking path
     {      

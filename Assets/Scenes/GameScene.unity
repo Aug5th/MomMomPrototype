@@ -4620,9 +4620,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1751188663}
-        m_TargetAssemblyTypeName: PhaseTwo, Assembly-CSharp
-        m_MethodName: Reumse
+      - m_Target: {fileID: 1751188662}
+        m_TargetAssemblyTypeName: PhaseOne, Assembly-CSharp
+        m_MethodName: Resume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5775,8 +5775,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1751188663}
-        m_TargetAssemblyTypeName: PhaseTwo, Assembly-CSharp
+      - m_Target: {fileID: 1751188662}
+        m_TargetAssemblyTypeName: PhaseOne, Assembly-CSharp
         m_MethodName: ClearPath
         m_Mode: 1
         m_Arguments:
@@ -6197,6 +6197,7 @@ GameObject:
   - component: {fileID: 617956229}
   - component: {fileID: 617956231}
   - component: {fileID: 617956232}
+  - component: {fileID: 617956233}
   m_Layer: 6
   m_Name: Kid
   m_TagString: Kid
@@ -6244,7 +6245,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_Sprite: {fileID: 774856967, guid: ff81d6aeb5817774e938ebc44678120b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6283,9 +6284,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4928d0e16299190488560c72eca8a697, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthPoint: 5
-  _manaPoint: 0
-  _moveSpeed: 0
+  HealthPoint: 5
+  MoveSpeed: 1
+  _animator: {fileID: 0}
 --- !u!61 &617956232
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6312,6 +6313,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.09978589, y: 0.23274042}
   m_EdgeRadius: 0
+--- !u!95 &617956233
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617956228}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 71029c3603cdb504eaf5335f04d94789, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &619185615
 GameObject:
   m_ObjectHideFlags: 0
@@ -6875,8 +6896,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1751188663}
-        m_TargetAssemblyTypeName: PhaseTwo, Assembly-CSharp
+      - m_Target: {fileID: 1751188662}
+        m_TargetAssemblyTypeName: PhaseOne, Assembly-CSharp
         m_MethodName: BeginWalking
         m_Mode: 1
         m_Arguments:
@@ -8442,8 +8463,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1751188663}
-        m_TargetAssemblyTypeName: PhaseTwo, Assembly-CSharp
+      - m_Target: {fileID: 1751188662}
+        m_TargetAssemblyTypeName: PhaseOne, Assembly-CSharp
         m_MethodName: Pause
         m_Mode: 1
         m_Arguments:
@@ -8848,8 +8869,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f22fc6397f84ed4b98b71400c177702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 617956228}
-  _moveSpeed: 2
+  _currentFlag: 0
+  PathFollowing: 0
 --- !u!1 &1555089853
 GameObject:
   m_ObjectHideFlags: 0
@@ -9103,7 +9124,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1751188661}
   - component: {fileID: 1751188662}
-  - component: {fileID: 1751188663}
   m_Layer: 5
   m_Name: Phase One
   m_TagString: Untagged
@@ -9142,18 +9162,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1a63a9b6899b2c47964d1f40c3207c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1751188663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1751188660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b1d96cf10b95124a8d1d9832363df11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1760889218
