@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e71599e546ed1e4d9c119cbefaf99cb, type: 3}
+  m_Name: EndPoint
+  m_EditorClassIdentifier: 
+  _tile:
+  - {fileID: 11400000, guid: f59dc2797e215764a9002a3555689739, type: 2}
+  - {fileID: 11400000, guid: 8b6a93158ea4f30419e77a0be6cd27d2, type: 2}
+  - {fileID: 11400000, guid: 46f57ae622ffb234497843bf39de6b92, type: 2}
+  - {fileID: 11400000, guid: b4d3992833694b5479201f65e9fb51ce, type: 2}
+  - {fileID: 11400000, guid: 60cdd26a65e7d4b47b459647914c42b6, type: 2}
+  - {fileID: 11400000, guid: 3904f1f7734c5c04db5f8849df9693cf, type: 2}
+  tileType: 3

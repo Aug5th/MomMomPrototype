@@ -17,7 +17,7 @@ public class ResourceSystem : Singleton<ResourceSystem>
 
     private Dictionary<EnemyType, EnemyScriptableObject> _enemyDict;
     private Dictionary<ToyType, ToyScriptableObject> _toyDict;
-    private Dictionary<TileType, TileScriptableObject> _tileDict;
+    private Dictionary<TileBase, TileScriptableObject> _tileDict;
 
     protected override void LoadComponents()
     {
@@ -46,11 +46,21 @@ public class ResourceSystem : Singleton<ResourceSystem>
     private void LoadTiles()
     {
         _tiles = Resources.LoadAll<TileScriptableObject>("Tile").ToList();
-        _tileDict = _tiles.ToDictionary(r => r.TileType, r => r);
+        _tileDict = new Dictionary<TileBase, TileScriptableObject>();
+       foreach(var tileData in _tiles)
+       {
+            foreach(var tile in tileData.tile)
+            {
+                _tileDict.Add(tile, tileData);
+            }
+       }
     }
 
     public EnemyScriptableObject GetEnemy(EnemyType type) => _enemyDict[type];
     public ToyScriptableObject GetToy(ToyType type) => _toyDict[type];
-    public TileBase GetTile(TileType type) => _tileDict[type].tile;
+    public  TileType GetTile(TileBase tile)
+    {
+        return _tileDict[tile].tileType;
+    }
 }
 

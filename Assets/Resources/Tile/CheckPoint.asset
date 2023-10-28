@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e71599e546ed1e4d9c119cbefaf99cb, type: 3}
-  m_Name: Tile
+  m_Name: CheckPoint
   m_EditorClassIdentifier: 
-  _tile: {fileID: 11400000, guid: cf8df893a1384da438d8483e9c020a41, type: 2}
-  TileType: 2
+  _tile:
+  - {fileID: 11400000, guid: cf8df893a1384da438d8483e9c020a41, type: 2}
+  tileType: 2
