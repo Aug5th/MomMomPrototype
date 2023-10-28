@@ -8,9 +8,9 @@ using UnityEngine.Tilemaps;
 public class TileScriptableObject : ScriptableObject
 {
     [SerializeField]
-    private TileBase _tile;
-    public TileBase tile => _tile;
-    public TileType TileType;
+    private TileBase[] _tile;
+    public TileBase[] tile => _tile;
+    public TileType tileType;
 }
 
 public enum TileType

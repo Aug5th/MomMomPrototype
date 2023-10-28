@@ -16,6 +16,8 @@ public class GridSystem : Singleton<GridSystem>
     [SerializeField]
     private Tilemap _wallMap;
     [SerializeField]
+    private Tilemap _passableMap;
+    [SerializeField]
     private TileBase _roadTile;
     [SerializeField]
     private GameObject _flag;
@@ -28,6 +30,7 @@ public class GridSystem : Singleton<GridSystem>
     private BoundsInt _bounds;
     private Vector2Int _startPoint;
     private bool _isPlacementMode = true;
+    private bool _isEndPointReach = false;
     
     // Start is called before the first frame update
     void Start()
@@ -52,14 +55,30 @@ public class GridSystem : Singleton<GridSystem>
     {
         if(Input.GetMouseButton(0))
         {
-            if(_isPlacementMode) // Only draw path if the kid not moving
+            if(_isPlacementMode && !_isEndPointReach) // Only draw path if the kid not moving
             {
                 CreateGrid();
                 Vector3 worldPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
                 Vector3Int gridPosition = _floorMap.WorldToCell(worldPosition);
-                TileBase currentTile = _floorMap.GetTile(gridPosition);
-                TileBase checkPoint =  ResourceSystem.Instance.GetTile(TileType.checkpoint);
-                if(currentTile != checkPoint) // Only draw path if destination is a checkpoint
+                if(_passableMap.HasTile(gridPosition)) // Only draw path if player touch on checkpoint and endpoint
+                {
+                    TileBase currentPassable = _passableMap.GetTile(gridPosition);
+                    TileType type = ResourceSystem.Instance.GetTile(currentPassable);
+                    if(type != TileType.checkpoint
+                    && type != TileType.endpoint)
+                    {
+                        return;
+                    }
+                    else if(type == TileType.endpoint)
+                    {
+                        _isEndPointReach = true;
+                    }
+                    else
+                    {
+                        _isEndPointReach = false;
+                    }
+                }
+                else
                 {
                     return;
                 }
@@ -81,6 +100,11 @@ public class GridSystem : Singleton<GridSystem>
         }
     }
 
+    public bool IsEndPointReach()
+    {
+        return _isEndPointReach;
+    }
+
     public void SetPlacementMode(bool mode)
     {
         _isPlacementMode = mode;
@@ -89,6 +113,7 @@ public class GridSystem : Singleton<GridSystem>
     {
         if(_isPlacementMode)
         {
+            _isEndPointReach = false;
             // Clear all path and flags
             _pathMap.ClearAllTiles();
 

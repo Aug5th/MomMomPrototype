@@ -13,9 +13,12 @@ public class PhaseTwo : MonoBehaviour
 
     public void BeginWalking()
     {
-        // Stop draw path, begin walking
-        GridSystem.Instance.SetPlacementMode(false);
-        PathSystem.Instance.BeginPath();
+        if(GridSystem.Instance.IsEndPointReach())
+        {
+            // Stop draw path, begin walking
+            GridSystem.Instance.SetPlacementMode(false);
+            PathSystem.Instance.BeginPath();
+        }
     }
 
     public void Pause()

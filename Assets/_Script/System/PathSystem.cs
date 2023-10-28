@@ -32,8 +32,6 @@ public class PathSystem : Singleton<PathSystem>
                     _currentFlag++;
                     CheckFlag();
                 }
-
-               
             }
        }
     }
