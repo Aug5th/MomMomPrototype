@@ -38,7 +38,7 @@ public class PathSystem : Singleton<PathSystem>
        }
     }
 
-    public void BeginPath() // For testing
+    public void BeginPath() // Begin walking
     {
         _pathFlags = GetComponentsInChildren<Flag>();
         CheckFlag();
