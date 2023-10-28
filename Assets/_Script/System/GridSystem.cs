@@ -87,22 +87,25 @@ public class GridSystem : Singleton<GridSystem>
     }
     public void ClearPath()
     {
-        // Clear all path and flags
-        _pathMap.ClearAllTiles();
-
-        Object[] allObjects = FindObjectsOfType(typeof(GameObject));
-        foreach(GameObject obj in allObjects) 
+        if(_isPlacementMode)
         {
-            if(obj.tag == "Flag")
-            {
-                Destroy(obj);
-            }
-        }
+            // Clear all path and flags
+            _pathMap.ClearAllTiles();
 
-        // Reset starting point back to kid
-        GameObject kid = GameObject.FindGameObjectWithTag("Kid");
-        Vector3Int gridPos = _floorMap.WorldToCell(kid.transform.position);
-        _startPoint = new Vector2Int(gridPos.x, gridPos.y);
+            Object[] allObjects = FindObjectsOfType(typeof(GameObject));
+            foreach(GameObject obj in allObjects) 
+            {
+                if(obj.tag == "Flag")
+                {
+                    Destroy(obj);
+                }
+            }
+
+            // Reset starting point back to kid
+            GameObject kid = GameObject.FindGameObjectWithTag("Kid");
+            Vector3Int gridPos = _floorMap.WorldToCell(kid.transform.position);
+            _startPoint = new Vector2Int(gridPos.x, gridPos.y);
+        }
     }
 
     private void CreateGrid()
