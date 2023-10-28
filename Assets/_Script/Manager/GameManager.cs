@@ -42,11 +42,6 @@ public class GameManager : Singleton<GameManager>
         OnStateChanged?.Invoke(newState);
     }
 
-    public void SwitchState()
-    {
-
-    }
-
     private void HandleVictoryState()
     {
         
@@ -63,6 +58,7 @@ public class GameManager : Singleton<GameManager>
         _phaseOneCamera.SetActive(false);
         _phaseTwoPanel.SetActive(true);
         _phaseTwoCamera.SetActive(true);
+        Kid.Instance.UpdateHealthBar();
     }
 
     private void HandlePhaseOneState()
