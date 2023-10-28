@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Kid : Singleton<Kid> , IDamageable , IMoveable
+public class Kid : Singleton<Kid> , IDamageable
 {
 
     public delegate void HealthChangeHandle(float currentHealth, float maxHealth);
@@ -10,11 +10,10 @@ public class Kid : Singleton<Kid> , IDamageable , IMoveable
     public Transform Transform { get; private set; }
     public float CurrentHealth { get; set; }
     public float MaxHealth { get; set; }
-    public Rigidbody2D Rigidbody { get; set; }
     public bool IsFacingRight { get; set; }
 
     public float HealthPoint = 5f;
-    public float MoveSpeed = 0.3f;
+    public float MoveSpeed = 1f;
 
     [SerializeField] private Animator _animator;
     public void Die()
@@ -22,26 +21,17 @@ public class Kid : Singleton<Kid> , IDamageable , IMoveable
         Debug.Log("GAME OVER");
     }
 
-    public void Move(Vector2 velocity)
+    public void Move(Vector3 destination)
     {
-        if (velocity == Vector2.zero)
-        {
-            _animator.Play("idle");
-        }
-        else
-        {
-            _animator.Play("walk");
-        }
-        Rigidbody.velocity = velocity;
-        CheckForLeftOrRightFacing(velocity);
+        Vector2 direction = (destination - transform.position).normalized;
+        transform.position = Vector3.MoveTowards(transform.position, destination, MoveSpeed * Time.deltaTime);
+        _animator.Play("walk");
+        CheckForLeftOrRightFacing(direction);
     }
 
-    private void MovePlayer()
+    public void StopMoving()
     {
-        float inputX = Input.GetAxis("Horizontal");
-        float inputY = Input.GetAxis("Vertical");
-        Vector2 moveDirection = new Vector2(inputX, inputY).normalized;
-        Move(moveDirection * MoveSpeed);
+        _animator.Play("idle");
     }
 
     public void TakeDamage(float damage)
@@ -63,7 +53,6 @@ public class Kid : Singleton<Kid> , IDamageable , IMoveable
     protected override void LoadComponents()
     {
         base.LoadComponents();
-        Rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         Transform = transform;
         CurrentHealth = MaxHealth = HealthPoint;
@@ -72,11 +61,6 @@ public class Kid : Singleton<Kid> , IDamageable , IMoveable
     private void Start()
     {
         UpdateHealthBar();
-    }
-
-    private void Update()
-    {
-        MovePlayer();
     }
 
     public void CheckForLeftOrRightFacing(Vector2 velocity)
