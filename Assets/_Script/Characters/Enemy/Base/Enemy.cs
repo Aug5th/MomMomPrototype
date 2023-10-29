@@ -18,7 +18,8 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     public Transform Target { get; set; }
     public bool IsChasingKid { get; set; }
     public Path PathMap;
-    public bool reachedEndOfPath;
+    public bool ReachedEndOfPath;
+    public int CurrentWayPoint = 1;
 
     protected Collider2D _collider;
 
@@ -27,7 +28,7 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     private HealthBar _healthBar;
     private Animator _animator;
     private Seeker _seeker;
-    private int currentWaypoint = 1;
+    
     #endregion
 
 
@@ -55,32 +56,6 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     private void FixedUpdate()
     {
         StateMachine.CurrentEnemyState.PhysicsUpdate();
-        if(PathMap == null)
-        {
-            return;
-        }
-        if(currentWaypoint >= PathMap.vectorPath.Count || Vector2.Distance(Rigidbody.position, Target.position) <= 0.15f)
-        {
-            reachedEndOfPath = true;
-            return;
-        }
-        else
-        {
-            reachedEndOfPath = false;
-        }
-        Vector2 direction = ((Vector2)PathMap.vectorPath[currentWaypoint] - Rigidbody.position).normalized;
-        
-        Vector2 force = direction * BaseStats.MovementSpeed;
-
-        Move(force);
-
-
-        float distance = Vector2.Distance(Rigidbody.position, (Vector2)PathMap.vectorPath[currentWaypoint]);
-
-        if(distance <= 0.032f)
-        {
-            currentWaypoint++;
-        }
     }
     #endregion
 
@@ -180,7 +155,7 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
         if (!p.error) {
             PathMap = p;
             // Reset the waypoint counter so that we start to move towards the first point in the path
-            currentWaypoint = 0;
+            CurrentWayPoint = 0;
         }
     }
 
