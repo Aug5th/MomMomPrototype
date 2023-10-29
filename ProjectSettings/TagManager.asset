@@ -12,6 +12,7 @@ TagManager:
   - CollisionObjects
   - Floor
   - UI
+  - EnemySpawnTrigger
   layers:
   - Default
   - TransparentFX

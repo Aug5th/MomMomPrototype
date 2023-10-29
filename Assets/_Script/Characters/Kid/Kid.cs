@@ -18,7 +18,7 @@ public class Kid : Singleton<Kid> , IDamageable
     [SerializeField] private Animator _animator;
     public void Die()
     {
-        Debug.Log("GAME OVER");
+        GameManager.Instance.UpdateGameState(GameState.Lose);
     }
 
     public void Move(Vector3 destination)
@@ -76,6 +76,15 @@ public class Kid : Singleton<Kid> , IDamageable
             Vector3 rotator = new Vector3(transform.rotation.x, 0f, transform.rotation.z);
             transform.rotation = Quaternion.Euler(rotator);
             IsFacingRight = !IsFacingRight;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("EnemySpawnTrigger"))
+        {
+            Debug.Log("Start spawn enemies");
+            PhaseTwo.Instance.EnemySpawning = true;
         }
     }
 }

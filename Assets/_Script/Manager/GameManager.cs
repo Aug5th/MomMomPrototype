@@ -11,6 +11,8 @@ public class GameManager : Singleton<GameManager>
 
     [SerializeField] private GameObject _phaseOnePanel;
     [SerializeField] private GameObject _phaseTwoPanel;
+    [SerializeField] private GameObject _losePanel;
+    [SerializeField] private GameObject _winPanel;
     [SerializeField] private GameObject _phaseOneCamera;
     [SerializeField] private GameObject _phaseTwoCamera;
 
@@ -49,11 +51,19 @@ public class GameManager : Singleton<GameManager>
 
     private void HandleLoseState()
     {
-        
+        PauseGame();
+        _losePanel.SetActive(true);
+        _winPanel.SetActive(false);
+        _phaseOnePanel.SetActive(false);
+        _phaseOneCamera.SetActive(false);
+        _phaseTwoPanel.SetActive(false);
+        _phaseTwoCamera.SetActive(false);
     }
 
     private void HandlePhaseTwoState()
     {
+        _losePanel.SetActive(false);
+        _winPanel.SetActive(false);
         _phaseOnePanel.SetActive(false);
         _phaseOneCamera.SetActive(false);
         _phaseTwoPanel.SetActive(true);
@@ -65,6 +75,8 @@ public class GameManager : Singleton<GameManager>
 
     private void HandlePhaseOneState()
     {
+        _losePanel.SetActive(false);
+        _winPanel.SetActive(false);
         _phaseOnePanel.SetActive(true);
         _phaseOneCamera.SetActive(true);
         _phaseTwoPanel.SetActive(false);

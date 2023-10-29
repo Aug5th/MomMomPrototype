@@ -66,11 +66,17 @@ public class EnemySpawner : Singleton<EnemySpawner>
     {
         InitGhostPool();
         InitSnakePool();
-        if(GameManager.Instance.GameState == GameState.PhaseTwo)
+    }
+
+    private void Update()
+    {
+        if (GameManager.Instance.GameState == GameState.PhaseTwo && PhaseTwo.Instance.EnemySpawning)
         {
             SpawnGhosts();
             SpawnSnakes();
+            PhaseTwo.Instance.EnemySpawning = false;
         }
+
     }
 
     private void InitSnakePool()

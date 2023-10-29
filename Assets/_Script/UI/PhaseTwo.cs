@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
 
-public class PhaseTwo : MonoBehaviour
+public class PhaseTwo : Singleton<PhaseTwo>
 {
-    
+    public bool EnemySpawning = false;
 }
