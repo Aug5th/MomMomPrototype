@@ -12,9 +12,11 @@ GameObject:
   - component: {fileID: 7258016346424413000}
   - component: {fileID: 7145785742584283504}
   - component: {fileID: 7145785742584283505}
-  - component: {fileID: 7145785742584283507}
   - component: {fileID: 7145785742584283506}
   - component: {fileID: 8564341069049804282}
+  - component: {fileID: 6610244633400350598}
+  - component: {fileID: 7145785742584283507}
+  - component: {fileID: 8524657627962504193}
   m_Layer: 8
   m_Name: Snake
   m_TagString: Enemy
@@ -79,7 +81,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1.5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -107,18 +109,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &7145785742584283507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 132527917359635169}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf07f53bfe7f1484a9db16abefdd884d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &7145785742584283506
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -185,6 +175,62 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   avoidanceRadius: 0.1
   avoidanceForce: 0.01
+--- !u!114 &6610244633400350598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132527917359635169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
+--- !u!114 &7145785742584283507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132527917359635169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf07f53bfe7f1484a9db16abefdd884d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextWaypointDistance: 3
+  reachedEndOfPath: 0
+--- !u!114 &8524657627962504193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132527917359635169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d51be506a85de14498b7eb833a621529, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextWaypointDistance: 3
+  reachedEndOfPath: 0
 --- !u!1 &1473092819000331660
 GameObject:
   m_ObjectHideFlags: 0

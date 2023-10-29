@@ -29,7 +29,7 @@ public class EnemyChaseState : EnemyState
     {
         base.FrameUpdate();
 
-        ChaseTarget();
+        //ChaseTarget();
         if (enemy.IsWithinAttackDistance)
         {
             enemyStateMachine.ChangeState(enemy.AttackState);
@@ -43,7 +43,7 @@ public class EnemyChaseState : EnemyState
 
     private void ChaseTarget()
     {
-        Vector2 moveDirection = (enemy.Target.position - enemy.transform.position).normalized;
-        enemy.Move(moveDirection * enemy.BaseStats.MovementSpeed);
+        // Vector2 moveDirection = (enemy.Target.position - enemy.transform.position).normalized;
+        // enemy.Move(moveDirection * enemy.BaseStats.MovementSpeed);
     }
 }
