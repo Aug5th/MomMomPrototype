@@ -60,7 +60,7 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
         {
             return;
         }
-        if(currentWaypoint >= PathMap.vectorPath.Count)
+        if(currentWaypoint >= PathMap.vectorPath.Count || Vector2.Distance(Rigidbody.position, Target.position) <= 0.32f)
         {
             reachedEndOfPath = true;
             return;
@@ -75,8 +75,10 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
 
         Move(force);
 
+
         float distance = Vector2.Distance(Rigidbody.position, (Vector2)PathMap.vectorPath[currentWaypoint]);
-        if(distance <= 0.15f)
+
+        if(distance <= 0.032f)
         {
             currentWaypoint++;
         }
@@ -195,7 +197,7 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
         Target = Kid.Instance.Transform;
         if(CountTime == 0)
         {
-            InvokeRepeating("UpdatePath", 0f, 10.0f);
+            InvokeRepeating("UpdatePath", 0f, 0.5f);
             CountTime++;
         }
         // if(BaseStats.OnlyChaseKid)

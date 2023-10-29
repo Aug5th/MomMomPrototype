@@ -215,7 +215,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf07f53bfe7f1484a9db16abefdd884d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextWaypointDistance: 3
   reachedEndOfPath: 0
 --- !u!114 &8524657627962504193
 MonoBehaviour:
@@ -229,7 +228,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d51be506a85de14498b7eb833a621529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextWaypointDistance: 3
   reachedEndOfPath: 0
 --- !u!1 &1473092819000331660
 GameObject:
