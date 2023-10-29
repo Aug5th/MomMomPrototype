@@ -30,7 +30,7 @@ public class EnemyChaseState : EnemyState
     {
         base.FrameUpdate();
 
-        //ChaseTarget();
+        ChaseTarget();
         if (enemy.IsWithinAttackDistance)
         {
             enemyStateMachine.ChangeState(enemy.AttackState);

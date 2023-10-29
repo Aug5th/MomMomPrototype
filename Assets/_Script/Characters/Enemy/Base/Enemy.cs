@@ -45,6 +45,7 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     private void Start()
     {
         StateMachine.Initialize(ChaseState);
+        InvokeRepeating("UpdatePath", 0f, 0.5f);
     }
 
     private void Update()
@@ -161,7 +162,7 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
 
     private void UpdatePath()
     {
-        if(_seeker.IsDone())
+        if(_seeker.IsDone() && Target != null)
         {
             _seeker.StartPath(Rigidbody.position, Target.position, OnPathComplete);
         }
@@ -169,33 +170,23 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
 
     private void FindTarget()
     {
-        // if(BaseStats.OnlyChaseKid)
-        // {
-        //     Target = Kid.Instance.Transform;
-        //     if(!IsChasingKid)
-        //     {
-        //         InvokeRepeating("UpdatePath", 0f, 0.5f);
-        //     }
-        //     IsChasingKid = true;
-        // }
-        // else
-        // {
+        if(BaseStats.OnlyChaseKid)
+        {
+            Target = Kid.Instance.Transform;
+            IsChasingKid = true;
+        }
+        else
+        {
             GameObject[] allTargets = GameObject.FindGameObjectsWithTag("Toy");
             if (allTargets.Length > 0)
             {
                 Target = allTargets[0].transform;
-                if(IsChasingKid)
-                {
-                    InvokeRepeating("UpdatePath", 0f, 0.5f);
-                }
                 foreach (GameObject target in allTargets)
                 {
-                    //Debug.Log(Vector2.Distance(Rigidbody.position, Target.transform.position));
                     if (Vector2.Distance(Rigidbody.position, target.transform.position) < Vector2.Distance(Rigidbody.position, Target.transform.position))
                     {                            
 
                         Target = target.transform;
-                        InvokeRepeating("UpdatePath", 0f, 0.5f);
                     }
                 }
                 IsChasingKid = false;
@@ -203,13 +194,9 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
             else
             {
                 Target = Kid.Instance.Transform;
-                if(!IsChasingKid)
-                {
-                    InvokeRepeating("UpdatePath", 0f, 0.5f);
-                }
                 IsChasingKid = true;
             }
-        // }        
+        }        
     }
 
     #endregion

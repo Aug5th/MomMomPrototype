@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
+using Pathfinding;
 
 public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
 {
@@ -14,6 +15,8 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     public Rigidbody2D Rigidbody { get; set; }
     public bool IsFacingRight { get; set; }
     public bool IsWithinAttackDistance { get; set; }
+    public Path PathMap;
+    public int CurrentWayPoint = 1;
 
     protected Collider2D _collider;
 
@@ -21,6 +24,8 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     private ToyAttackDistanceCheck _attackDistanceCheck;
     private HealthBar _healthBar;
     private Animator _animator;
+    private Seeker _seeker;
+
 
     #endregion
 
@@ -33,16 +38,20 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     public ToyDieState DieState { get; set; }
     public Transform Target { get; set; }
     public bool IsHavingTarget { get; set; }
+    public bool IsActivated { get; set; }
+    public bool IsInHealingZone { get; set; }
     #endregion
 
     #region Start - Update - Fixed Update
     private void Start()
     {
-        StateMachine.Initialize(IdleState);
+        StateMachine.Initialize(ChaseState);
+        InvokeRepeating("UpdatePath", 0f, 0.5f);
     }
 
     private void Update()
     {
+        FindTarget();
         StateMachine.CurrentToyState.FrameUpdate();
     }
 
@@ -57,6 +66,7 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     {
         base.LoadComponents();
         Rigidbody = GetComponent<Rigidbody2D>();
+        _seeker = GetComponent<Seeker>();
         _collider = GetComponent<Collider2D>();
         _animator = GetComponent<Animator>();
         _attackDistanceCheck = GetComponentInChildren<ToyAttackDistanceCheck>();
@@ -72,6 +82,9 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
         AttackState = new ToyAttackState(this, StateMachine);
         HurtState = new ToyHurtState(this, StateMachine);
         DieState = new ToyDieState(this, StateMachine);
+        IsHavingTarget = false;
+        IsActivated = true;
+        IsInHealingZone = false;
     }
 
     public void SetStats(ToyStats stats)
@@ -125,6 +138,61 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
         CheckForLeftOrRightFacing(velocity);
     }
 
+    private void UpdatePath()
+    {
+        if(_seeker.IsDone() && Target != null)
+        {
+            _seeker.StartPath(Rigidbody.position, Target.position, OnPathComplete);
+        }
+    }
+
+    public void OnPathComplete(Path p)
+    {
+        Debug.Log("A path was calculated. Did it fail with an error_Toy? " + p.error);
+
+        if (!p.error) {
+            PathMap = p;
+            // Reset the waypoint counter so that we start to move towards the first point in the path
+            CurrentWayPoint = 0;
+        }
+    }
+
+    private void FindTarget()
+    {
+        if(!IsActivated)
+        {
+            return;
+        }
+
+        // if(!IsHavingTarget)
+        // {
+        //     Target = Kid.Instance.Transform;
+        //     IsHavingTarget = false;
+        // }
+        // else
+        {
+            GameObject[] allTargets = GameObject.FindGameObjectsWithTag("Enemy");
+            if (allTargets.Length > 0)
+            {
+                Target = allTargets[0].transform;
+                foreach (GameObject target in allTargets)
+                {
+                    if (Vector2.Distance(Rigidbody.position, target.transform.position) < Vector2.Distance(Rigidbody.position, Target.transform.position))
+                    {                            
+
+                        Target = target.transform;
+                    }
+                }
+                IsHavingTarget = true;
+            }
+            else
+            {
+                Target = Kid.Instance.Transform;
+                IsHavingTarget = true;
+            }
+        }        
+    }
+
     public void CheckForLeftOrRightFacing(Vector2 velocity)
     {
         if (IsFacingRight && velocity.x < 0f)
@@ -155,6 +223,16 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     public void AnimationCallbackEvent(AnimationTriggerType triggerType)
     {
         StateMachine.CurrentToyState.AnimationCallbackEvent(triggerType);
+    }
+
+    public void SetActivated(bool isActivated)
+    {
+        IsActivated = isActivated;
+    }
+
+    public void SetIsInHealingZone(bool isInHealingZone)
+    {
+        IsInHealingZone = isInHealingZone;
     }
 
     public void TriggerAnimation(AnimationTriggerType triggerType)

@@ -5,7 +5,7 @@ using UnityEngine;
 public class ToyChaseState : ToyState
 {
     [SerializeField] private Transform _target;
-
+    public bool reachedEndOfPath = false;
     public ToyChaseState(Toy toy, ToyStateMachine toyStateMachine) : base(toy, toyStateMachine)
     {
 
@@ -30,12 +30,14 @@ public class ToyChaseState : ToyState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-
-        FindTarget();
-
-        if (_target == null)
+        
+        if(Vector2.Distance(toy.Rigidbody.position, Kid.Instance.Transform.position) <= 0.5f)
         {
-            toyStateMachine.ChangeState(toy.IdleState);
+            toy.SetIsInHealingZone(true);
+        }
+        else
+        {
+            toy.SetIsInHealingZone(false);
         }
 
         ChaseTarget();
@@ -48,27 +50,36 @@ public class ToyChaseState : ToyState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-    }
-
-    private void FindTarget()
-    {
-        GameObject[] allTargets = GameObject.FindGameObjectsWithTag("Enemy");
-        if (allTargets.Length > 0)
-        {
-            _target = allTargets[0].transform;
-            foreach (GameObject target in allTargets)
-            {
-                if (Vector2.Distance(toy.transform.position, target.transform.position) < Vector2.Distance(toy.transform.position, _target.transform.position))
-                {
-                    _target = target.transform;
-                }
-            }
-        }
+        ChaseTarget();
     }
 
     private void ChaseTarget()
     {
-        Vector2 moveDirection = (_target.position - toy.transform.position).normalized;
-        toy.Move(moveDirection * toy.BaseStats.MovementSpeed);
+        if (toy.PathMap == null)
+        {
+            return;
+        }
+        if (toy.CurrentWayPoint >= toy.PathMap.vectorPath.Count || toy.IsWithinAttackDistance || toy.IsInHealingZone)
+        {
+            reachedEndOfPath = true;
+            return;
+        }
+        else
+        {
+            reachedEndOfPath = false;
+        }
+        Vector2 direction = ((Vector2)toy.PathMap.vectorPath[toy.CurrentWayPoint] - toy.Rigidbody.position).normalized;
+
+        Vector2 force = direction * toy.BaseStats.MovementSpeed;
+
+        toy.Move(force);
+
+
+        float distance = Vector2.Distance(toy.Rigidbody.position, (Vector2)toy.PathMap.vectorPath[toy.CurrentWayPoint]);
+
+        if (distance <= 0.032f)
+        {
+            toy.CurrentWayPoint++;
+        }
     }
 }
