@@ -16,7 +16,7 @@ MonoBehaviour:
     HealthPoint: 50
     Power: 2
     AttackSpeed: 1.5
-    AttackRange: 0.1
+    AttackRange: 0.15
     MovementSpeed: 0.5
     OnlyChaseKid: 0
   EnemyType: 1

@@ -28,7 +28,6 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     private Animator _animator;
     private Seeker _seeker;
     private int currentWaypoint = 1;
-    private int CountTime = 0;
     #endregion
 
 
@@ -60,7 +59,7 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
         {
             return;
         }
-        if(currentWaypoint >= PathMap.vectorPath.Count || Vector2.Distance(Rigidbody.position, Target.position) <= 0.32f)
+        if(currentWaypoint >= PathMap.vectorPath.Count || Vector2.Distance(Rigidbody.position, Target.position) <= 0.15f)
         {
             reachedEndOfPath = true;
             return;
@@ -95,6 +94,7 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
         _animator = GetComponent<Animator>();
         _attackDistanceCheck = GetComponentInChildren<EnemyAttackDistanceCheck>();
         _healthBar = GetComponentInChildren<HealthBar>();
+        IsChasingKid = true;
         SetupStateMachine();
     }
 
@@ -194,37 +194,46 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
 
     private void FindTarget()
     {
-        Target = Kid.Instance.Transform;
-        if(CountTime == 0)
-        {
-            InvokeRepeating("UpdatePath", 0f, 0.5f);
-            CountTime++;
-        }
         // if(BaseStats.OnlyChaseKid)
         // {
         //     Target = Kid.Instance.Transform;
+        //     if(!IsChasingKid)
+        //     {
+        //         InvokeRepeating("UpdatePath", 0f, 0.5f);
+        //     }
         //     IsChasingKid = true;
         // }
         // else
         // {
-        //     GameObject[] allTargets = GameObject.FindGameObjectsWithTag("Toy");
-        //     if (allTargets.Length > 0)
-        //     {
-        //         Target = allTargets[0].transform;
-        //         foreach (GameObject target in allTargets)
-        //         {
-        //             if (Vector2.Distance(transform.position, target.transform.position) < Vector2.Distance(transform.position, Target.transform.position))
-        //             {
-        //                 Target = target.transform;
-        //             }
-        //         }
-        //         IsChasingKid = false;
-        //     }
-        //     else
-        //     {
-        //         Target = Kid.Instance.Transform;
-        //         IsChasingKid = true;
-        //     }
+            GameObject[] allTargets = GameObject.FindGameObjectsWithTag("Toy");
+            if (allTargets.Length > 0)
+            {
+                Target = allTargets[0].transform;
+                if(IsChasingKid)
+                {
+                    InvokeRepeating("UpdatePath", 0f, 0.5f);
+                }
+                foreach (GameObject target in allTargets)
+                {
+                    //Debug.Log(Vector2.Distance(Rigidbody.position, Target.transform.position));
+                    if (Vector2.Distance(Rigidbody.position, target.transform.position) < Vector2.Distance(Rigidbody.position, Target.transform.position))
+                    {                            
+
+                        Target = target.transform;
+                        InvokeRepeating("UpdatePath", 0f, 0.5f);
+                    }
+                }
+                IsChasingKid = false;
+            }
+            else
+            {
+                Target = Kid.Instance.Transform;
+                if(!IsChasingKid)
+                {
+                    InvokeRepeating("UpdatePath", 0f, 0.5f);
+                }
+                IsChasingKid = true;
+            }
         // }        
     }
 
