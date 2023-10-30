@@ -66,7 +66,7 @@ public class EnemySpawner : Singleton<EnemySpawner>
     {
         InitGhostPool();
         InitSnakePool();
-        if(GameManager.Instance.GameState == GameState.PhaseOne)
+        if (GameManager.Instance.GameState == GameState.PhaseOne)
         {
             SpawnGhosts();
             SpawnSnakes();
@@ -106,7 +106,7 @@ public class EnemySpawner : Singleton<EnemySpawner>
         }, ghost =>
         {
             Destroy(ghost.gameObject);
-        }, false,15,20);
+        }, false, 15, 20);
     }
 
     private Enemy GetEnemy(EnemyType enemyType)
@@ -125,6 +125,22 @@ public class EnemySpawner : Singleton<EnemySpawner>
         return null;
     }
 
+    private ObjectPool<Enemy> GetEnemyPool(EnemyType enemyType)
+    {
+        switch (enemyType)
+        {
+            case EnemyType.None:
+                break;
+            case EnemyType.Snake:
+                return _snakePool;
+            case EnemyType.Ghost:
+                return _ghostPool;
+            case EnemyType.Spider:
+                break;
+        }
+        return null;
+    }
+
     private Enemy SpawnEnemy(EnemyType enemyType,Vector3 position)
     {
         var enemy = GetEnemy(enemyType);
@@ -132,7 +148,7 @@ public class EnemySpawner : Singleton<EnemySpawner>
         var enemyScript = ResourceSystem.Instance.GetEnemy(enemyType);
         enemy.SetStats(enemyScript.BaseStats);
         enemy.SetType(enemyScript.EnemyType);
-        enemy.SetPool(_ghostPool);
+        enemy.SetPool(GetEnemyPool(enemyType));
         enemy.transform.SetParent(_holder);
         return enemy;
     }

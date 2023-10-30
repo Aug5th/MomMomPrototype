@@ -6,7 +6,7 @@ public class ToyAttackState : ToyState
 {
     [SerializeField] private LayerMask _targetLayerMask;
     [SerializeField] private Transform _attackPoint;
-    private float _attackCircle = 0.1f;
+    private float _attackCircle = 0.2f;
 
     private float _timer;
 
@@ -14,7 +14,6 @@ public class ToyAttackState : ToyState
     {
         _targetLayerMask = LayerMask.GetMask("Enemy");
         _attackPoint = toy.transform.Find("AttackPoint");
-        _timer = toy.BaseStats.AttackSpeed + 1f;
     }
 
     public override void AnimationCallbackEvent(Toy.AnimationTriggerType triggerType)
@@ -29,6 +28,9 @@ public class ToyAttackState : ToyState
     public override void EnterState()
     {
         base.EnterState();
+        _timer = toy.BaseStats.AttackSpeed + 1f;
+        toy.Move(Vector2.zero);
+        toy.TriggerAnimation(Toy.AnimationTriggerType.ToyIdle);
     }
 
     public override void ExitState()
@@ -58,7 +60,7 @@ public class ToyAttackState : ToyState
         if(_timer > toy.BaseStats.AttackSpeed)
         {
             _timer = 0f;
-            Debug.Log("Snake Attack");
+            Debug.Log("Toy Attack");
             toy.TriggerAnimation(Toy.AnimationTriggerType.ToyAttack);
         }
         _timer += Time.deltaTime;
@@ -70,8 +72,13 @@ public class ToyAttackState : ToyState
         Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(_attackPoint.position, _attackCircle, _targetLayerMask);
         if (enemiesToDamage.Length > 0)
         {
-            enemiesToDamage[0].GetComponent<IDamageable>().TakeDamage(toy.BaseStats.Power);
-            Debug.Log("Toy take damage: "+ toy.BaseStats.Power);
+            Debug.Log("enemiesToDamage " + enemiesToDamage.Length);
+            var damageable = enemiesToDamage[0].GetComponent<IDamageable>();  // get 0 means the toy only attack single target
+            if (damageable != null)
+            {
+                damageable.TakeDamage(toy.BaseStats.Power);
+                Debug.Log("Enemy take damage: " + toy.BaseStats.Power);
+            }
         }
     }
 }

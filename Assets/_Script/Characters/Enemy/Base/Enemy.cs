@@ -111,7 +111,6 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     public void Die()
     {
         StateMachine.ChangeState(DieState);
-        //_controller.EnemyAnimation.TriggerAnimationDie();
     }
 
     public void ReleaseEnemy()
@@ -151,7 +150,7 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
 
     public void OnPathComplete(Path p)
     {
-        Debug.Log("A path was calculated. Did it fail with an error? " + p.error);
+        //Debug.Log("A path was calculated. Did it fail with an error? " + p.error);
 
         if (!p.error) {
             PathMap = p;
@@ -232,7 +231,7 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
             case AnimationTriggerType.EnemyHurt:
                 break;
             case AnimationTriggerType.EnemyDie:
-                _animator.SetTrigger("die");
+                _animator.Play("die");
                 break;
             default:
                 break;

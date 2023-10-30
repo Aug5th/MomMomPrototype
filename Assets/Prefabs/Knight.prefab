@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 5470435821081432533}
   - component: {fileID: 7049127230858767108}
   - component: {fileID: 6281903152351698449}
-  m_Layer: 7
+  m_Layer: 13
   m_Name: AttackDistance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4463022983667175090}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -517,7 +517,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9010530981171458929}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.659, y: -0.634, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -586,6 +586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3460162c2e1985946bbc05ac7f1b0ee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentWayPoint: 1
 --- !u!212 &5042734965099916624
 SpriteRenderer:
   m_ObjectHideFlags: 0

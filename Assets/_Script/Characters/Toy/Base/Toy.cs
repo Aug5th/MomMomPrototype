@@ -148,7 +148,7 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
 
     public void OnPathComplete(Path p)
     {
-        Debug.Log("A path was calculated. Did it fail with an error_Toy? " + p.error);
+        //Debug.Log("A path was calculated. Did it fail with an error_Toy? " + p.error);
 
         if (!p.error) {
             PathMap = p;
@@ -251,7 +251,7 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
             case AnimationTriggerType.ToyHurt:
                 break;
             case AnimationTriggerType.ToyDie:
-                _animator.SetTrigger("die");
+                _animator.Play("die");
                 break;
             default:
                 break;
