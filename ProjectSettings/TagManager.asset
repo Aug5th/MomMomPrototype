@@ -52,10 +52,10 @@ TagManager:
   - name: Ground
     uniqueID: 3994687533
     locked: 0
-  - name: Frontground
+  - name: ColliderObjects
     uniqueID: 4002620445
     locked: 0
-  - name: ColliderObjects
+  - name: Frontground
     uniqueID: 2811688191
     locked: 0
   - name: Character
