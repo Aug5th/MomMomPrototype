@@ -11,13 +11,16 @@ public class ResourceSystem : Singleton<ResourceSystem>
     [SerializeField] private List<EnemyScriptableObject> _enemies = new();
     [SerializeField] private List<ToyScriptableObject> _toys = new();
     [SerializeField] private List<TileScriptableObject> _tiles = new();
+    [SerializeField] private List<ProjectileScriptableObject> _projectiles = new();
     public List<EnemyScriptableObject> Enemies => _enemies;
     public List<ToyScriptableObject> Toys => _toys;
     public List<TileScriptableObject> Tiles => _tiles;
+    public List<ProjectileScriptableObject> Projectiles => _projectiles;
 
     private Dictionary<EnemyType, EnemyScriptableObject> _enemyDict;
     private Dictionary<ToyType, ToyScriptableObject> _toyDict;
     private Dictionary<TileBase, TileScriptableObject> _tileDict;
+    private Dictionary<ProjectileType, ProjectileScriptableObject> _projectileDict;
 
     protected override void LoadComponents()
     {
@@ -30,7 +33,9 @@ public class ResourceSystem : Singleton<ResourceSystem>
         LoadEnemies();
         LoadToys();
         LoadTiles();
+        LoadProjectiles();
     }
+
     private void LoadEnemies()
     {
         _enemies = Resources.LoadAll<EnemyScriptableObject>("Enemy").ToList();
@@ -55,6 +60,11 @@ public class ResourceSystem : Singleton<ResourceSystem>
             }
        }
     }
+    private void LoadProjectiles()
+    {
+        _projectiles = Resources.LoadAll<ProjectileScriptableObject>("Projectile").ToList();
+        _projectileDict = _projectiles.ToDictionary(r => r.ProjectileType, r => r);
+    }
 
     public EnemyScriptableObject GetEnemy(EnemyType type) => _enemyDict[type];
     public ToyScriptableObject GetToy(ToyType type) => _toyDict[type];
@@ -62,5 +72,6 @@ public class ResourceSystem : Singleton<ResourceSystem>
     {
         return _tileDict[tile].tileType;
     }
+    public ProjectileScriptableObject GetProjectile(ProjectileType type) => _projectileDict[type];
 }
 

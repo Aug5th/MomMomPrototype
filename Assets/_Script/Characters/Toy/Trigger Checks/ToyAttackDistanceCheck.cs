@@ -22,6 +22,7 @@ public class ToyAttackDistanceCheck : MyMonoBehaviour
     {
         if(collision.CompareTag("Enemy"))
         {
+            Debug.Log(_toy.name + " / OntriggerEnter2D");
             _toy.SetAttackDistanceBool(true);
         }
     }
@@ -30,6 +31,7 @@ public class ToyAttackDistanceCheck : MyMonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
+            Debug.Log(_toy.name + " / OnTriggerExit2D");
             _toy.SetAttackDistanceBool(false);
         }
     }

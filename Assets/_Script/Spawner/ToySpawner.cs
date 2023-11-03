@@ -6,10 +6,12 @@ using UnityEngine.Pool;
 
 public class ToySpawner : Singleton<ToySpawner>
 {
-    [SerializeField] private List<Transform> _spawnPoints;
+    [SerializeField] private List<Transform> _knightSpawnPoint;
+    [SerializeField] private List<Transform> _rangerSpawnPoint;
     [SerializeField] private Transform _holder;
 
     private ObjectPool<Toy> _knightPool;
+    private ObjectPool<Toy> _rangerPool;
 
     protected override void LoadComponents()
     {
@@ -20,14 +22,34 @@ public class ToySpawner : Singleton<ToySpawner>
 
     private void LoadSpawnLocations()
     {
-        _spawnPoints.Clear();
+        LoadRangerSpawnPoints();
+        LoadKnightSpawnPoints();
+    }
 
-        Transform spawnPoints = transform.Find("Spawn Points");
+    private void LoadRangerSpawnPoints()
+    {
+        _rangerSpawnPoint.Clear();
+
+        Transform spawnPoints = transform.Find("Ranger Spawn Points");
         if (spawnPoints)
         {
             foreach (Transform spawnPoint in spawnPoints)
             {
-                _spawnPoints.Add(spawnPoint);
+                _rangerSpawnPoint.Add(spawnPoint);
+            }
+        }
+    }
+
+    private void LoadKnightSpawnPoints()
+    {
+        _knightSpawnPoint.Clear();
+
+        Transform spawnPoints = transform.Find("Knight Spawn Points");
+        if (spawnPoints)
+        {
+            foreach (Transform spawnPoint in spawnPoints)
+            {
+                _knightSpawnPoint.Add(spawnPoint);
             }
         }
     }
@@ -43,14 +65,25 @@ public class ToySpawner : Singleton<ToySpawner>
     private void Start()
     {
         InitKnightPool();
+        InitRangerPool();
+
         SpawnKnights();
+        SpawnRangers();
     }
 
     private void SpawnKnights()
     {
-        foreach (var point in _spawnPoints)
+        foreach (var point in _knightSpawnPoint)
         {
             SpawnKnight(point.position); 
+        }
+    }
+
+    private void SpawnRangers()
+    {
+        foreach (var point in _rangerSpawnPoint)
+        {
+            SpawnRanger(point.position);
         }
     }
 
@@ -64,6 +97,18 @@ public class ToySpawner : Singleton<ToySpawner>
         knight.SetPool(_knightPool);
         knight.transform.SetParent(_holder);
         return knight;
+    }
+
+    private Toy SpawnRanger(Vector3 position)
+    {
+        var ranger = _rangerPool.Get();
+        ranger.transform.SetPositionAndRotation(position, Quaternion.identity);
+        var toyScript = ResourceSystem.Instance.GetToy(ToyType.Ranger);
+        ranger.SetStats(toyScript.BaseStats);
+        ranger.SetType(toyScript.ToyType);
+        ranger.SetPool(_rangerPool);
+        ranger.transform.SetParent(_holder);
+        return ranger;
     }
 
     private void InitKnightPool()
@@ -81,6 +126,23 @@ public class ToySpawner : Singleton<ToySpawner>
         }, knight =>
         {
             Destroy(knight.gameObject);
+        }, false, 5, 10);
+    }
+    private void InitRangerPool()
+    {
+        _rangerPool = new ObjectPool<Toy>(() =>
+        {
+            var toyScript = ResourceSystem.Instance.GetToy(ToyType.Ranger);
+            return Instantiate(toyScript.Prefab);
+        }, ranger =>
+        {
+            ranger.gameObject.SetActive(true);
+        }, ranger =>
+        {
+            ranger.gameObject.SetActive(false);
+        }, ranger =>
+        {
+            Destroy(ranger.gameObject);
         }, false, 5, 10);
     }
 }

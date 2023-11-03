@@ -40,7 +40,6 @@ public class ToyChaseState : ToyState
             toy.SetIsInHealingZone(false);
         }
 
-        ChaseTarget();
         if (toy.IsWithinAttackDistance)
         {
             toyStateMachine.ChangeState(toy.AttackState);

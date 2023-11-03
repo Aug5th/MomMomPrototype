@@ -27,7 +27,7 @@ public struct ToyStats
 public enum ToyType
 {
     None = 0,
-    Solider = 1,
+    Ranger = 1,
     Knight = 2,
     Phoenix = 3
 }

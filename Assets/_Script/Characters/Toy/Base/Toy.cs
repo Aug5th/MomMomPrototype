@@ -25,7 +25,10 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     private HealthBar _healthBar;
     private Animator _animator;
     private Seeker _seeker;
-
+    
+    protected Transform _attackPoint;
+    protected float _timer;
+    [SerializeField] protected LayerMask _targetLayerMask;
 
     #endregion
 
@@ -37,7 +40,6 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     public ToyHurtState HurtState { get; set; }
     public ToyDieState DieState { get; set; }
     public Transform Target { get; set; }
-    public bool IsHavingTarget { get; set; }
     public bool IsActivated { get; set; }
     public bool IsInHealingZone { get; set; }
     #endregion
@@ -71,6 +73,8 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
         _animator = GetComponent<Animator>();
         _attackDistanceCheck = GetComponentInChildren<ToyAttackDistanceCheck>();
         _healthBar = GetComponentInChildren<HealthBar>();
+        _attackPoint = transform.Find("AttackPoint");
+        _targetLayerMask = LayerMask.GetMask("Enemy");
         SetupStateMachine();
     }
 
@@ -82,7 +86,6 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
         AttackState = new ToyAttackState(this, StateMachine);
         HurtState = new ToyHurtState(this, StateMachine);
         DieState = new ToyDieState(this, StateMachine);
-        IsHavingTarget = false;
         IsActivated = true;
         IsInHealingZone = false;
     }
@@ -93,6 +96,7 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
         CurrentHealth = MaxHealth = stats.HealthPoint;
         _attackDistanceCheck.SetAttackDistance(stats.AttackRange);
         _healthBar.UpdateHealthBar(CurrentHealth, MaxHealth);
+        _timer = stats.AttackSpeed + 1f;
     }
 
     public void SetType(ToyType type) => ToyType = type;
@@ -103,6 +107,15 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     #endregion
 
     #region Damageable
+    public virtual void StartAttack()
+    {
+
+    }
+
+    public virtual void EndAttack()
+    {
+
+    }
     public void TakeDamage(float damage)
     {
         Debug.Log("Toy Take Damage : " + damage);
@@ -164,33 +177,24 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
             return;
         }
 
-        // if(!IsHavingTarget)
-        // {
-        //     Target = Kid.Instance.Transform;
-        //     IsHavingTarget = false;
-        // }
-        // else
+        GameObject[] allTargets = GameObject.FindGameObjectsWithTag("Enemy");
+        if (allTargets.Length > 0)
         {
-            GameObject[] allTargets = GameObject.FindGameObjectsWithTag("Enemy");
-            if (allTargets.Length > 0)
+            Target = allTargets[0].transform;
+            foreach (GameObject target in allTargets)
             {
-                Target = allTargets[0].transform;
-                foreach (GameObject target in allTargets)
-                {
-                    if (Vector2.Distance(Rigidbody.position, target.transform.position) < Vector2.Distance(Rigidbody.position, Target.transform.position))
-                    {                            
+                if (Vector2.Distance(Rigidbody.position, target.transform.position) < Vector2.Distance(Rigidbody.position, Target.transform.position))
+                {                            
 
-                        Target = target.transform;
-                    }
+                    Target = target.transform;
                 }
-                IsHavingTarget = true;
             }
-            else
-            {
-                Target = Kid.Instance.Transform;
-                IsHavingTarget = true;
-            }
-        }        
+        }
+        else
+        {
+            //Target = Kid.Instance.Transform;
+            // target Nom Nom
+        }       
     }
 
     public void CheckForLeftOrRightFacing(Vector2 velocity)
