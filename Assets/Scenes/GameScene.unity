@@ -6115,8 +6115,10 @@ MonoBehaviour:
   GameState: 0
   _phaseOnePanel: {fileID: 1751188660}
   _phaseTwoPanel: {fileID: 329367134}
+  _losePanel: {fileID: 1191946883}
+  _winPanel: {fileID: 1760889218}
   _phaseOneCamera: {fileID: 373388400}
-  _phaseTwoCamera: {fileID: 0}
+  _phaseTwoCamera: {fileID: 1746601839}
 --- !u!1 &516965324
 GameObject:
   m_ObjectHideFlags: 0

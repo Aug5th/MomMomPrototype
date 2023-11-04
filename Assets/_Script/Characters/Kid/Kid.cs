@@ -84,7 +84,7 @@ public class Kid : Singleton<Kid> , IDamageable
         if(collision.CompareTag("EnemySpawnTrigger"))
         {
             Debug.Log("Start spawn enemies");
-            PhaseTwo.Instance.EnemySpawning = true;
+            //PhaseTwo.Instance.EnemySpawning = true;
         }
     }
 }
