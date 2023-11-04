@@ -59,7 +59,6 @@ public class EnemyAttackState : EnemyState
         if(_timer > enemy.BaseStats.AttackSpeed)
         {
             _timer = 0f;
-            Debug.Log("Snake Attack");
             enemy.TriggerAnimation(Enemy.AnimationTriggerType.EnemyAttack);
         }
         _timer += Time.deltaTime;

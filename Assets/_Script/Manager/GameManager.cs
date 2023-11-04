@@ -58,8 +58,6 @@ public class GameManager : Singleton<GameManager>
         _phaseOneCamera.SetActive(false);
         _phaseTwoPanel.SetActive(true);
         _phaseTwoCamera.SetActive(true);
-        GridSystem.Instance.SetPlacementMode(false);
-        PathSystem.Instance.BeginPath();
         Kid.Instance.UpdateHealthBar();
     }
 

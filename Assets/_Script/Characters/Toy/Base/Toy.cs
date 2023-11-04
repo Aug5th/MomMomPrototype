@@ -192,7 +192,7 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
         }
         else
         {
-            //Target = Kid.Instance.Transform;
+            Target = NomNom.Instance.Transform;
             // target Nom Nom
         }       
     }

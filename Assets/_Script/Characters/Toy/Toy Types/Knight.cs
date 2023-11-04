@@ -12,7 +12,6 @@ public class Knight : Toy
         if (_timer > BaseStats.AttackSpeed)
         {
             _timer = 0f;
-            Debug.Log("Knight Attack");
             TriggerAnimation(Toy.AnimationTriggerType.ToyAttack);
         }
         _timer += Time.deltaTime;
