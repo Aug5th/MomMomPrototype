@@ -35,6 +35,7 @@ public class NomNom : Singleton<NomNom> , IDamageable
         _animator = GetComponent<Animator>();
         CurrentSpeed = MoveSpeed;
         Transform = transform;
+        gameObject.SetActive(false);
     }
 
     public void CheckForLeftOrRightFacing(Vector2 velocity)

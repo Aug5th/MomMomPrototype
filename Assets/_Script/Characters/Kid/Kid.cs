@@ -79,12 +79,4 @@ public class Kid : Singleton<Kid> , IDamageable
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.CompareTag("EnemySpawnTrigger"))
-        {
-            Debug.Log("Start spawn enemies");
-            //PhaseTwo.Instance.EnemySpawning = true;
-        }
-    }
 }

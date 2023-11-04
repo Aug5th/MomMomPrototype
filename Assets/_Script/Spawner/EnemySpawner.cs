@@ -12,6 +12,8 @@ public class EnemySpawner : Singleton<EnemySpawner>
 
     private ObjectPool<Enemy> _ghostPool;
     private ObjectPool<Enemy> _snakePool;
+
+    private bool _spawnEnemies = true;
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -66,11 +68,23 @@ public class EnemySpawner : Singleton<EnemySpawner>
     {
         InitGhostPool();
         InitSnakePool();
-        if (GameManager.Instance.GameState == GameState.PhaseOne)
+    }
+
+    private void Update()
+    {
+        if(GameManager.Instance.GameState != GameState.PhaseTwo || !EnemySpawnTrigger.Instance.EnemySpawning)
+        {
+            return;
+        }
+
+
+        if(_spawnEnemies)
         {
             SpawnGhosts();
             SpawnSnakes();
+            _spawnEnemies = false;
         }
+        
     }
 
     private void InitSnakePool()

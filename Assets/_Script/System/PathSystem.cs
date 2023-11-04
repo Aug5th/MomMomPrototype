@@ -52,6 +52,12 @@ public class PathSystem : Singleton<PathSystem>
 
     private void MoveNomNom()
     {
+        if(!EnemySpawnTrigger.Instance.EnemySpawning)
+        {
+            return;
+        }
+
+        Debug.Log("Path Following = " + PathFollowing);
         if (PathFollowing)
         {
             if (NomNom.Instance.transform.position != _currentNomNomPosition)
