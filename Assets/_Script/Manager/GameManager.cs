@@ -46,7 +46,13 @@ public class GameManager : Singleton<GameManager>
 
     private void HandleVictoryState()
     {
-        
+        PauseGame();
+        _losePanel.SetActive(false);
+        _winPanel.SetActive(true);
+        _phaseOnePanel.SetActive(false);
+        _phaseOneCamera.SetActive(false);
+        _phaseTwoPanel.SetActive(false);
+        _phaseTwoCamera.SetActive(false);
     }
 
     private void HandleLoseState()

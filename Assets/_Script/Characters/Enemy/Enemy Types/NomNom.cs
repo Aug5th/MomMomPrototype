@@ -77,4 +77,12 @@ public class NomNom : Singleton<NomNom> , IDamageable
         // Nom Nom don't have Healthbar
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Kid"))
+        {
+            GameManager.Instance.UpdateGameState(GameState.Lose);
+        }
+    }
+
 }

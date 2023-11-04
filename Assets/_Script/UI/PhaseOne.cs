@@ -10,7 +10,7 @@ public class PhaseOne : Singleton<PhaseOne>
 
     public void StartPhaseTwo()
     {
-        if (GridSystem.Instance.IsEndPointReach())
+        //if (GridSystem.Instance.IsEndPointReach())
         {
             GridSystem.Instance.HidePath(true);
             GridSystem.Instance.SetPlacementMode(false);
@@ -23,6 +23,7 @@ public class PhaseOne : Singleton<PhaseOne>
     {
         base.LoadComponents();
         SetButtonsInteractable(false);
+        buttonPlay.interactable = true;
     }
 
     public void ClearPath()

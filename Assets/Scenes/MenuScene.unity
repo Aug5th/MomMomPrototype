@@ -183,8 +183,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: PLAY
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9486fdf2ad6a59e4690b7aa54aacdcea, type: 2}
-  m_sharedMaterial: {fileID: -326931717946656606, guid: 9486fdf2ad6a59e4690b7aa54aacdcea, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 344669c85038f1a4fb55a7f80935b380, type: 2}
+  m_sharedMaterial: {fileID: 8051180806191960290, guid: 344669c85038f1a4fb55a7f80935b380, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -421,8 +421,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: QUIT
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9486fdf2ad6a59e4690b7aa54aacdcea, type: 2}
-  m_sharedMaterial: {fileID: -326931717946656606, guid: 9486fdf2ad6a59e4690b7aa54aacdcea, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 344669c85038f1a4fb55a7f80935b380, type: 2}
+  m_sharedMaterial: {fileID: 8051180806191960290, guid: 344669c85038f1a4fb55a7f80935b380, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1101,10 +1101,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Mom! Mom? Nom, nom!
+  m_text: MOM! MOM? NOM, NOM!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9486fdf2ad6a59e4690b7aa54aacdcea, type: 2}
-  m_sharedMaterial: {fileID: -326931717946656606, guid: 9486fdf2ad6a59e4690b7aa54aacdcea, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ac5cd8edb6ddc514bb7c316aac883b7f, type: 2}
+  m_sharedMaterial: {fileID: 7031544643608355749, guid: ac5cd8edb6ddc514bb7c316aac883b7f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
