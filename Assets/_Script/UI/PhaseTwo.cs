@@ -4,7 +4,21 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
 
-public class PhaseTwo : Singleton<PhaseTwo>
+public class PhaseTwo : MonoBehaviour
 {
-    public bool EnemySpawning = false;
+    public void ClearPath()
+    {
+        GridSystem.Instance.ClearPath();
+    }
+
+    public void BeginWalking()
+    {
+        // Stop draw path, begin walking
+        if(GridSystem.Instance.IsEndPointReach())
+        {
+            GridSystem.Instance.HidePath(true);
+            GridSystem.Instance.SetPlacementMode(false);
+            PathSystem.Instance.BeginPath();
+        }
+    } 
 }

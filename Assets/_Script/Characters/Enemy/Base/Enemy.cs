@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
+using Pathfinding;
 
 public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
 {
@@ -16,6 +17,9 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     public bool IsWithinAttackDistance { get; set; }
     public Transform Target { get; set; }
     public bool IsChasingKid { get; set; }
+    public Path PathMap;
+    public bool ReachedEndOfPath;
+    public int CurrentWayPoint = 1;
 
     protected Collider2D _collider;
 
@@ -23,7 +27,10 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     private EnemyAttackDistanceCheck _attackDistanceCheck;
     private HealthBar _healthBar;
     private Animator _animator;
+    private Seeker _seeker;
+    
     #endregion
+
 
     #region State Machine
     public EnemyStateMachine StateMachine { get; set; }
@@ -38,6 +45,7 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     private void Start()
     {
         StateMachine.Initialize(ChaseState);
+        InvokeRepeating("UpdatePath", 0f, 0.5f);
     }
 
     private void Update()
@@ -57,10 +65,12 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     {
         base.LoadComponents();
         Rigidbody = GetComponent<Rigidbody2D>();
+        _seeker = GetComponent<Seeker>();
         _collider = GetComponent<Collider2D>();
         _animator = GetComponent<Animator>();
         _attackDistanceCheck = GetComponentInChildren<EnemyAttackDistanceCheck>();
         _healthBar = GetComponentInChildren<HealthBar>();
+        IsChasingKid = true;
         SetupStateMachine();
     }
 
@@ -101,7 +111,6 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     public void Die()
     {
         StateMachine.ChangeState(DieState);
-        //_controller.EnemyAnimation.TriggerAnimationDie();
     }
 
     public void ReleaseEnemy()
@@ -139,6 +148,25 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
         }
     }
 
+    public void OnPathComplete(Path p)
+    {
+        //Debug.Log("A path was calculated. Did it fail with an error? " + p.error);
+
+        if (!p.error) {
+            PathMap = p;
+            // Reset the waypoint counter so that we start to move towards the first point in the path
+            CurrentWayPoint = 0;
+        }
+    }
+
+    private void UpdatePath()
+    {
+        if(_seeker.IsDone() && Target != null)
+        {
+            _seeker.StartPath(Rigidbody.position, Target.position, OnPathComplete);
+        }
+    }
+
     private void FindTarget()
     {
         if(BaseStats.OnlyChaseKid)
@@ -154,8 +182,9 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
                 Target = allTargets[0].transform;
                 foreach (GameObject target in allTargets)
                 {
-                    if (Vector2.Distance(transform.position, target.transform.position) < Vector2.Distance(transform.position, Target.transform.position))
-                    {
+                    if (Vector2.Distance(Rigidbody.position, target.transform.position) < Vector2.Distance(Rigidbody.position, Target.transform.position))
+                    {                            
+
                         Target = target.transform;
                     }
                 }
@@ -202,7 +231,7 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
             case AnimationTriggerType.EnemyHurt:
                 break;
             case AnimationTriggerType.EnemyDie:
-                _animator.SetTrigger("die");
+                _animator.Play("die");
                 break;
             default:
                 break;

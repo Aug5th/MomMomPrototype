@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyChaseState : EnemyState
 {
+    public bool reachedEndOfPath;
     public EnemyChaseState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
     {
 
@@ -28,8 +29,6 @@ public class EnemyChaseState : EnemyState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-
-        ChaseTarget();
         if (enemy.IsWithinAttackDistance)
         {
             enemyStateMachine.ChangeState(enemy.AttackState);
@@ -39,11 +38,36 @@ public class EnemyChaseState : EnemyState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+        ChaseTarget();
     }
 
     private void ChaseTarget()
     {
-        Vector2 moveDirection = (enemy.Target.position - enemy.transform.position).normalized;
-        enemy.Move(moveDirection * enemy.BaseStats.MovementSpeed);
+        if (enemy.PathMap == null)
+        {
+            return;
+        }
+        if (enemy.CurrentWayPoint >= enemy.PathMap.vectorPath.Count || enemy.IsWithinAttackDistance)
+        {
+            reachedEndOfPath = true;
+            return;
+        }
+        else
+        {
+            reachedEndOfPath = false;
+        }
+        Vector2 direction = ((Vector2)enemy.PathMap.vectorPath[enemy.CurrentWayPoint] - enemy.Rigidbody.position).normalized;
+
+        Vector2 force = direction * enemy.BaseStats.MovementSpeed;
+
+        enemy.Move(force);
+
+
+        float distance = Vector2.Distance(enemy.Rigidbody.position, (Vector2)enemy.PathMap.vectorPath[enemy.CurrentWayPoint]);
+
+        if (distance <= 0.032f)
+        {
+            enemy.CurrentWayPoint++;
+        }
     }
 }

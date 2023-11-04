@@ -1,12 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class PhaseOne : MonoBehaviour
+public class PhaseOne : Singleton<PhaseOne>
 {
+    [SerializeField] private Button buttonPlay;
+    [SerializeField] private Button buttonMove;
+
     public void StartPhaseTwo()
     {
-        GameManager.Instance.UpdateGameState(GameState.PhaseTwo);
+        if (GridSystem.Instance.IsEndPointReach())
+        {
+            GridSystem.Instance.HidePath(true);
+            GridSystem.Instance.SetPlacementMode(false);
+            PathSystem.Instance.BeginPath();
+            GameManager.Instance.UpdateGameState(GameState.PhaseTwo);
+        }
+    }
+
+    protected override void LoadComponents()
+    {
+        base.LoadComponents();
+        SetButtonsInteractable(false);
     }
 
     public void ClearPath()
@@ -17,8 +33,12 @@ public class PhaseOne : MonoBehaviour
     public void BeginWalking()
     {
         // Stop draw path, begin walking
-        GridSystem.Instance.SetPlacementMode(false);
-        PathSystem.Instance.BeginPath();
+        if(GridSystem.Instance.IsEndPointReach())
+        {
+            GridSystem.Instance.HidePath(true);
+            GridSystem.Instance.SetPlacementMode(false);
+            PathSystem.Instance.BeginPath();
+        }
     }
 
     public void Pause()
@@ -29,5 +49,11 @@ public class PhaseOne : MonoBehaviour
     public void Resume()
     {
         GameManager.Instance.ResumeGame();
+    }
+
+    public void SetButtonsInteractable(bool interactable)
+    {
+        buttonPlay.interactable = interactable;
+        buttonMove.interactable = interactable;
     }
 }

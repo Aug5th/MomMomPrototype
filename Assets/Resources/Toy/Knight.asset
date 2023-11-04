@@ -15,8 +15,8 @@ MonoBehaviour:
   _stats:
     HealthPoint: 20
     Power: 5
-    AttackSpeed: 2
-    AttackRange: 0.15
+    AttackSpeed: 4
+    AttackRange: 0.17
     MovementSpeed: 1
   ToyType: 2
   Prefab: {fileID: 6012594058053379359, guid: b01a106b9f5586a4699a7ea95341f98d, type: 3}

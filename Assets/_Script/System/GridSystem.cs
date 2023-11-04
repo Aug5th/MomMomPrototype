@@ -4,6 +4,7 @@ using System.Text;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class GridSystem : Singleton<GridSystem>
 {
@@ -72,6 +73,7 @@ public class GridSystem : Singleton<GridSystem>
                     else if(type == TileType.endpoint)
                     {
                         _isEndPointReach = true;
+                        PhaseOne.Instance.SetButtonsInteractable(true);
                     }
                     else
                     {
@@ -109,11 +111,26 @@ public class GridSystem : Singleton<GridSystem>
     {
         _isPlacementMode = mode;
     }
+
+    public void HidePath(bool hide)
+    {
+        Color pathColor = _pathMap.GetComponent<Tilemap>().color;
+        if(hide)
+        {
+            pathColor.a = 0f;
+        }
+        else
+        {
+            pathColor.a = 1f;
+        }
+        _pathMap.GetComponent<Tilemap>().color = pathColor;
+    }    
     public void ClearPath()
     {
         if(_isPlacementMode)
         {
             _isEndPointReach = false;
+            PhaseOne.Instance.SetButtonsInteractable(false);
             // Clear all path and flags
             _pathMap.ClearAllTiles();
 

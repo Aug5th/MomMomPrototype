@@ -6,7 +6,7 @@ public class EnemyAttackState : EnemyState
 {
     [SerializeField] private LayerMask _targetLayerMask;
     [SerializeField] private Transform _attackPoint;
-    private float _attackCircle = 0.1f;
+    private float _attackCircle = 0.5f;
 
     private float _timer;
 
@@ -59,7 +59,6 @@ public class EnemyAttackState : EnemyState
         if(_timer > enemy.BaseStats.AttackSpeed)
         {
             _timer = 0f;
-            Debug.Log("Snake Attack");
             enemy.TriggerAnimation(Enemy.AnimationTriggerType.EnemyAttack);
         }
         _timer += Time.deltaTime;
@@ -83,7 +82,11 @@ public class EnemyAttackState : EnemyState
         Collider2D[] toysToDamage = Physics2D.OverlapCircleAll(_attackPoint.position, _attackCircle, _targetLayerMask);
         if (toysToDamage.Length > 0)
         {
-            toysToDamage[0].GetComponent<IDamageable>().TakeDamage(enemy.BaseStats.Power);
+            var damageable = toysToDamage[0].GetComponent<IDamageable>(); // get 0 means the enemy only attack single target
+            if (damageable != null)
+            {
+                damageable.TakeDamage(enemy.BaseStats.Power);
+            }
         }
     }
 }

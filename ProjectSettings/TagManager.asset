@@ -26,8 +26,8 @@ TagManager:
   - Placement
   - CollisionObjects
   - Floor
-  - 
-  - 
+  - Obstacles
+  - AttackDistance
   - 
   - 
   - 
@@ -49,4 +49,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 3994687533
+    locked: 0
+  - name: ColliderObjects
+    uniqueID: 4002620445
+    locked: 0
+  - name: Frontground
+    uniqueID: 2811688191
+    locked: 0
+  - name: Character
+    uniqueID: 4175100763
+    locked: 0
+  - name: UI
+    uniqueID: 192124437
     locked: 0
