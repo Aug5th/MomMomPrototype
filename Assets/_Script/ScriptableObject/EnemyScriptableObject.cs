@@ -28,7 +28,7 @@ public struct EnemyStats
 public enum EnemyType
 {
     None = 0,
-    Snake = 1,
+    Rat = 1,
     Ghost = 2,
     Spider = 3
 }

@@ -6,12 +6,12 @@ using UnityEngine.Pool;
 public class EnemySpawner : Singleton<EnemySpawner>
 {
     [SerializeField] private List<Transform> _ghostSpawnPoints;
-    [SerializeField] private List<Transform> _snakeSpawnPoints;
+    [SerializeField] private List<Transform> _ratSpawnPoint;
     [SerializeField] private int _numberGhostPerPoint = 3;
     [SerializeField] private Transform _holder;
 
     private ObjectPool<Enemy> _ghostPool;
-    private ObjectPool<Enemy> _snakePool;
+    private ObjectPool<Enemy> _ratPool;
 
     private bool _spawnEnemies = true;
     protected override void LoadComponents()
@@ -24,7 +24,7 @@ public class EnemySpawner : Singleton<EnemySpawner>
     private void LoadSpawnLocations()
     {
         LoadGhostSpawnLocation();
-        LoadSnakeSpawnLocation();
+        LoadRatSpawnPoints();
     }
 
     private void LoadGhostSpawnLocation()
@@ -41,16 +41,16 @@ public class EnemySpawner : Singleton<EnemySpawner>
         }
     }
 
-    private void LoadSnakeSpawnLocation()
+    private void LoadRatSpawnPoints()
     {
-        _snakeSpawnPoints.Clear();
+        _ratSpawnPoint.Clear();
 
-        Transform spawnPoints = transform.Find("Snake Spawn Points");
+        Transform spawnPoints = transform.Find("Rat Spawn Points");
         if (spawnPoints)
         {
             foreach (Transform spawnPoint in spawnPoints)
             {
-                _snakeSpawnPoints.Add(spawnPoint);
+                _ratSpawnPoint.Add(spawnPoint);
             }
         }
     }
@@ -67,7 +67,7 @@ public class EnemySpawner : Singleton<EnemySpawner>
     private void Start()
     {
         InitGhostPool();
-        InitSnakePool();
+        InitRatPool();
     }
 
     private void Update()
@@ -81,27 +81,27 @@ public class EnemySpawner : Singleton<EnemySpawner>
         if(_spawnEnemies)
         {
             SpawnGhosts();
-            SpawnSnakes();
+            SpawnRats();
             _spawnEnemies = false;
         }
         
     }
 
-    private void InitSnakePool()
+    private void InitRatPool()
     {
-        _snakePool = new ObjectPool<Enemy>(() =>
+        _ratPool = new ObjectPool<Enemy>(() =>
         {
-            var snakeScript = ResourceSystem.Instance.GetEnemy(EnemyType.Snake);
-            return Instantiate(snakeScript.Prefab);
-        }, snake =>
+            var ratScript = ResourceSystem.Instance.GetEnemy(EnemyType.Rat);
+            return Instantiate(ratScript.Prefab);
+        }, rat =>
         {
-            snake.gameObject.SetActive(true);
-        }, snake =>
+            rat.gameObject.SetActive(true);
+        }, rat =>
         {
-            snake.gameObject.SetActive(false);
-        }, snake =>
+            rat.gameObject.SetActive(false);
+        }, rat =>
         {
-            Destroy(snake.gameObject);
+            Destroy(rat.gameObject);
         }, false, 15, 20);
     }
 
@@ -129,8 +129,8 @@ public class EnemySpawner : Singleton<EnemySpawner>
         {
             case EnemyType.None:
                 return null;
-            case EnemyType.Snake:
-                return _snakePool.Get();
+            case EnemyType.Rat:
+                return _ratPool.Get();
             case EnemyType.Ghost:
                 return _ghostPool.Get();
             case EnemyType.Spider:
@@ -145,8 +145,8 @@ public class EnemySpawner : Singleton<EnemySpawner>
         {
             case EnemyType.None:
                 break;
-            case EnemyType.Snake:
-                return _snakePool;
+            case EnemyType.Rat:
+                return _ratPool;
             case EnemyType.Ghost:
                 return _ghostPool;
             case EnemyType.Spider:
@@ -167,11 +167,11 @@ public class EnemySpawner : Singleton<EnemySpawner>
         return enemy;
     }
 
-    private void SpawnSnakes()
+    private void SpawnRats()
     {
-        foreach (var point in _snakeSpawnPoints)
+        foreach (var point in _ratSpawnPoint)
         {
-            SpawnEnemy(EnemyType.Snake,point.position);
+            SpawnEnemy(EnemyType.Rat,point.position);
         }
     }
     private void SpawnGhosts()
