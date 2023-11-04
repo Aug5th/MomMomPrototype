@@ -13,7 +13,7 @@ public class PathSystem : Singleton<PathSystem>
     private int _currentNomNomFlag;
     static private Vector3 _currentPosition;
     static private Vector3 _currentNomNomPosition;
-
+    private bool _isUseSkill = false;
     public bool PathFollowing = false;
 
 
@@ -24,7 +24,7 @@ public class PathSystem : Singleton<PathSystem>
 
     private void MovePlayer()
     {
-        if (PathFollowing)
+        if (PathFollowing && !_isUseSkill)
         {
             if (Kid.Instance.transform.position != _currentPosition)
             {
@@ -81,6 +81,18 @@ public class PathSystem : Singleton<PathSystem>
         else
         {
             NomNom.Instance.StopMoving();
+        }
+    }
+
+    public void StandStill(bool standstill)
+    {
+        if(standstill)
+        {
+            _isUseSkill = true;
+        }
+        else
+        {
+            _isUseSkill = false;
         }
     }
 

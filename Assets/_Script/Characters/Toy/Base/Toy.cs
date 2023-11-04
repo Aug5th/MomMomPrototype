@@ -25,6 +25,7 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     private HealthBar _healthBar;
     private Animator _animator;
     private Seeker _seeker;
+    private bool _isHealingMode;
     
     protected Transform _attackPoint;
     protected float _timer;
@@ -47,7 +48,8 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     #region Start - Update - Fixed Update
     private void Start()
     {
-        StateMachine.Initialize(ChaseState);
+        _isHealingMode = false;
+        StateMachine.Initialize(IdleState);
         InvokeRepeating("UpdatePath", 0f, 0.5f);
     }
 
@@ -178,23 +180,30 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
         }
 
         GameObject[] allTargets = GameObject.FindGameObjectsWithTag("Enemy");
-        if (allTargets.Length > 0)
+        if(_isHealingMode) // If healing mode, go to kid
         {
-            Target = allTargets[0].transform;
-            foreach (GameObject target in allTargets)
-            {
-                if (Vector2.Distance(Rigidbody.position, target.transform.position) < Vector2.Distance(Rigidbody.position, Target.transform.position))
-                {                            
-
-                    Target = target.transform;
-                }
-            }
+           Target = Kid.Instance.Transform;
         }
         else
         {
-            Target = NomNom.Instance.Transform;
-            // target Nom Nom
-        }       
+            if (allTargets.Length > 0)
+            {
+                Target = allTargets[0].transform;
+                foreach (GameObject target in allTargets)
+                {
+                    if (Vector2.Distance(Rigidbody.position, target.transform.position) < Vector2.Distance(Rigidbody.position, Target.transform.position))
+                    {                            
+
+                        Target = target.transform;
+                    }
+                }
+            }
+            else
+            {
+                Target = NomNom.Instance.Transform;
+                // target Nom Nom
+            }       
+        }
     }
 
     public void CheckForLeftOrRightFacing(Vector2 velocity)
@@ -210,6 +219,19 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
             Vector3 rotator = new Vector3(transform.rotation.x, 0f, transform.rotation.z);
             transform.rotation = Quaternion.Euler(rotator);
             IsFacingRight = !IsFacingRight;
+        }
+    }
+
+    public void SetHealingMode(bool healingMode) // Set healing mode
+    {
+        _isHealingMode = healingMode;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) // Change to chase state when kid touch the toy
+    {
+        if(collision.CompareTag("Kid"))
+        {
+            StateMachine.Initialize(ChaseState);
         }
     }
     #endregion
