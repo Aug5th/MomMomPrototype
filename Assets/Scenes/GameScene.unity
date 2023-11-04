@@ -4955,14 +4955,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5188679, g: 0.31978726, b: 0.07587219, a: 1}
+  m_Color: {r: 0.9433962, g: 0.4611118, b: 0.4227483, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 72e6a2e69aa724746ba219325ffe19a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d1b6bdeb03c0eaf41b44c8d48e5f62a2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5068,7 +5068,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 72e6a2e69aa724746ba219325ffe19a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2d909a9e1f491ab438b7f1b533b63c1a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6681,8 +6681,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4287009487
-  m_fontColor: {r: 0.8117647, g: 0.5718217, b: 0.5254902, a: 1}
+    rgba: 4291153661
+  m_fontColor: {r: 0.990566, g: 0.8070591, b: 0.7709594, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -9019,8 +9019,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4291025349
-  m_fontColor: {r: 0.7708213, g: 0.8490566, b: 0.76495194, a: 1}
+    rgba: 4283471190
+  m_fontColor: {r: 0.33659664, g: 0.5849056, b: 0.31176573, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -9653,7 +9653,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1191946884
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9795,8 +9795,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281720172
-  m_fontColor: {r: 0.42318097, g: 0.8666667, b: 0.20784312, a: 1}
+    rgba: 4281200911
+  m_fontColor: {r: 0.057849795, g: 0.9433962, b: 0.17824307, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -10817,7 +10817,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1760889219
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14321,9 +14321,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'You are fallen into the nightmare
-
-    Forever...'
+  m_text: YOU HERE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ac5cd8edb6ddc514bb7c316aac883b7f, type: 2}
   m_sharedMaterial: {fileID: 7031544643608355749, guid: ac5cd8edb6ddc514bb7c316aac883b7f, type: 2}
@@ -14332,8 +14330,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281680861
-  m_fontColor: {r: 0.8666667, g: 0.2621193, b: 0.20784312, a: 1}
+    rgba: 4284431567
+  m_fontColor: {r: 0.8113208, g: 0.23344605, b: 0.373577, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
