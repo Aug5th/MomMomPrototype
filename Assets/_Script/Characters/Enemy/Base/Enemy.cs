@@ -46,6 +46,7 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     {
         StateMachine.Initialize(ChaseState);
         InvokeRepeating("UpdatePath", 0f, 0.5f);
+        Target = Kid.Instance.Transform;
     }
 
     private void Update()
@@ -169,6 +170,7 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
 
     private void FindTarget()
     {
+        //Debug.Log("Current Target:" + Target);
         if(BaseStats.OnlyChaseKid)
         {
             Target = Kid.Instance.Transform;
@@ -176,21 +178,30 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
         }
         else
         {
+            bool foundTarget = false;
             GameObject[] allTargets = GameObject.FindGameObjectsWithTag("Toy");
             if (allTargets.Length > 0)
             {
-                Target = allTargets[0].transform;
                 foreach (GameObject target in allTargets)
                 {
-                    if (Vector2.Distance(Rigidbody.position, target.transform.position) < Vector2.Distance(Rigidbody.position, Target.transform.position))
-                    {                            
+                    Toy currentToy = target.GetComponent<Toy>();
+                    if(currentToy.IsActivated && !currentToy._isHealingMode)
+                    {
+                        if(!foundTarget)
+                        {
+                            Target = target.transform;
+                            foundTarget = true;
+                        }
+                        else if (Vector2.Distance(Rigidbody.position, target.transform.position) < Vector2.Distance(Rigidbody.position, Target.transform.position))
+                        {                            
 
-                        Target = target.transform;
+                            Target = target.transform;
+                        }
                     }
                 }
                 IsChasingKid = false;
             }
-            else
+            if(!foundTarget)
             {
                 Target = Kid.Instance.Transform;
                 IsChasingKid = true;

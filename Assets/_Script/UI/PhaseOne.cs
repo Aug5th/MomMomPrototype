@@ -63,6 +63,7 @@ public class PhaseOne : Singleton<PhaseOne>
                 {
                     // Toys go to kid
                     toySetting.SetHealingMode(true);
+                    toySetting.SetAttackDistanceBool(false);
                     PathSystem.Instance.StandStill(true); // Kid stop moving
                 }
             }

@@ -18,5 +18,6 @@ MonoBehaviour:
     AttackSpeed: 4
     AttackRange: 0.17
     MovementSpeed: 1
+    HealingStrength: 3
   ToyType: 2
   Prefab: {fileID: 6012594058053379359, guid: b01a106b9f5586a4699a7ea95341f98d, type: 3}

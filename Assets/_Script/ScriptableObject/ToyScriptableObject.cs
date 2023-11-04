@@ -22,6 +22,7 @@ public struct ToyStats
     public float AttackSpeed;
     public float AttackRange;
     public float MovementSpeed;
+    public float  HealingStrength;
 }
 
 public enum ToyType

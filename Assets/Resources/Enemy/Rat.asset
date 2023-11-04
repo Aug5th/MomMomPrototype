@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stats:
     HealthPoint: 50
-    Power: 2
+    Power: 3
     AttackSpeed: 1.5
     AttackRange: 0.15
     MovementSpeed: 0.5

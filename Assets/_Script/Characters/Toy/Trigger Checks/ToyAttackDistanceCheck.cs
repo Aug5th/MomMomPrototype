@@ -20,7 +20,7 @@ public class ToyAttackDistanceCheck : MyMonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Enemy"))
+        if(collision.CompareTag("Enemy") && !(_toy._isHealingMode))
         {
             //Debug.Log(_toy.name + " / OntriggerEnter2D");
             _toy.SetAttackDistanceBool(true);

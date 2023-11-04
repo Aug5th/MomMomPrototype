@@ -31,15 +31,6 @@ public class ToyChaseState : ToyState
     {
         base.FrameUpdate();
         
-        if(Vector2.Distance(toy.Rigidbody.position, Kid.Instance.Transform.position) <= 0.5f)
-        {
-            toy.SetIsInHealingZone(true);
-        }
-        else
-        {
-            toy.SetIsInHealingZone(false);
-        }
-
         if (toy.IsWithinAttackDistance)
         {
             toyStateMachine.ChangeState(toy.AttackState);

@@ -25,7 +25,7 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     private HealthBar _healthBar;
     private Animator _animator;
     private Seeker _seeker;
-    private bool _isHealingMode;
+    public bool _isHealingMode;
     
     protected Transform _attackPoint;
     protected float _timer;
@@ -56,6 +56,14 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     private void Update()
     {
         FindTarget();
+        if(_isHealingMode && Vector2.Distance(Rigidbody.position, Kid.Instance.Transform.position) <= 0.2f)
+        {
+            SetIsInHealingZone(true);
+        }
+        else
+        {
+            SetIsInHealingZone(false);
+        }
         StateMachine.CurrentToyState.FrameUpdate();
     }
 
@@ -88,7 +96,7 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
         AttackState = new ToyAttackState(this, StateMachine);
         HurtState = new ToyHurtState(this, StateMachine);
         DieState = new ToyDieState(this, StateMachine);
-        IsActivated = true;
+        IsActivated = false;
         IsInHealingZone = false;
     }
 
@@ -172,6 +180,7 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
         }
     }
 
+
     private void FindTarget()
     {
         if(!IsActivated)
@@ -222,16 +231,38 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
         }
     }
 
+    private void Healing()
+    {
+        CurrentHealth += Mathf.Max(BaseStats.HealingStrength, MaxHealth-CurrentHealth);
+        UpdateHealthBar();
+        if (CurrentHealth >= MaxHealth)
+        {
+            CancelInvoke("Healing");
+        }
+    }
+
     public void SetHealingMode(bool healingMode) // Set healing mode
     {
         _isHealingMode = healingMode;
+        if(healingMode)
+        {
+            StateMachine.ChangeState(ChaseState);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision) // Change to chase state when kid touch the toy
     {
         if(collision.CompareTag("Kid"))
         {
-            StateMachine.Initialize(ChaseState);
+            if(!IsActivated)
+            {
+                SetActivated(true);
+                StateMachine.ChangeState(ChaseState);
+            }
+            else
+            {
+                InvokeRepeating("Healing", 0f, 0.5f);
+            }
         }
     }
     #endregion

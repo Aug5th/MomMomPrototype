@@ -63,6 +63,7 @@ public class Kid : Singleton<Kid> , IDamageable
         UpdateHealthBar();
     }
 
+
     public void CheckForLeftOrRightFacing(Vector2 velocity)
     {
         if (IsFacingRight && velocity.x < 0f)

@@ -20,7 +20,15 @@ public class EnemyAttackDistanceCheck : MyMonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Toy") || collision.CompareTag("Kid"))
+        if(collision.CompareTag("Toy"))
+        {
+            Toy targetToy = collision.GetComponent<Toy>();
+            if(targetToy.IsActivated)
+            {
+                _enemy.SetAttackDistanceBool(true);
+            }
+        }
+        if(collision.CompareTag("Kid"))
         {
             _enemy.SetAttackDistanceBool(true);
         }
