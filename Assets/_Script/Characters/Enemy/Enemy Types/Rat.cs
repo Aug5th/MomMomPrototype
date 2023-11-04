@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
-public class Snake : Enemy
+public class Rat : Enemy
 {
 
 }
