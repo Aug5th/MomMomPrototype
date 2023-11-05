@@ -7,24 +7,29 @@ public class PathSystem : Singleton<PathSystem>
 {
     private Flag[] _pathFlags;
     private Flag[] _NomNomFlags;
+    private Flag[] _TeddyFlags;
 
     [SerializeField]
     private int _currentFlag;
     private int _currentNomNomFlag;
+    private int _currentTeddyFlag;
     static private Vector3 _currentPosition;
     static private Vector3 _currentNomNomPosition;
+    static private Vector3 _currentTeddyPosition;
     private bool _isUseSkill = false;
+    private bool _isTeddyWalking = false;
     public bool PathFollowing = false;
 
 
     private void Update() {
         MovePlayer();
         MoveNomNom();
+        MoveTeddy();
     }
 
     private void MovePlayer()
     {
-        if (PathFollowing && !_isUseSkill)
+        if (PathFollowing && !_isUseSkill && _isTeddyWalking)
         {
             if (Kid.Instance.transform.position != _currentPosition)
             {
@@ -47,6 +52,39 @@ public class PathSystem : Singleton<PathSystem>
         else
         {
             Kid.Instance.StopMoving();
+        }
+    }
+
+     private void MoveTeddy()
+    {
+        if (PathFollowing && !_isUseSkill)
+        {
+            if (Teddy.Instance.transform.position != _currentTeddyPosition)
+            {
+                Teddy.Instance.Move(_currentTeddyPosition);
+            }
+            else
+            {
+                if (_currentTeddyFlag < _TeddyFlags.Length - 1)
+                {
+                    _currentTeddyFlag++;
+                    CheckFlag();
+                }
+            }
+
+            if (_currentTeddyFlag == _TeddyFlags.Length - 1)
+            {
+                Teddy.Instance.StopMoving();
+            }
+
+            if(_currentTeddyFlag > 1)
+            {
+                _isTeddyWalking = true;
+            }
+        }
+        else
+        {
+            Teddy.Instance.StopMoving();
         }
     }
 
@@ -100,6 +138,7 @@ public class PathSystem : Singleton<PathSystem>
     {
         _pathFlags = GetComponentsInChildren<Flag>();
         _NomNomFlags = GetComponentsInChildren<Flag>();
+        _TeddyFlags = GetComponentsInChildren<Flag>();
         CheckFlag();
         PathFollowing = true;
     }
@@ -107,5 +146,6 @@ public class PathSystem : Singleton<PathSystem>
     {      
         _currentPosition = _pathFlags[_currentFlag].transform.position;
         _currentNomNomPosition = _NomNomFlags[_currentNomNomFlag].transform.position;
+        _currentTeddyPosition = _TeddyFlags[_currentTeddyFlag].transform.position;
     }
 }
