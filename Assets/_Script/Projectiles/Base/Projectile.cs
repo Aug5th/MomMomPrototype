@@ -36,6 +36,12 @@ public class Projectile : MyMonoBehaviour
         _projectilePool.Release(this);
     }
 
-    protected virtual void HandleTriggerCollider(Collider2D collider) { }
+    protected virtual void HandleTriggerCollider(Collider2D collider) 
+    { 
+        if(collider.CompareTag("CollisionObjects"))
+        {
+            ReleaseProjectile();
+        }
+    }
     #endregion
 }
