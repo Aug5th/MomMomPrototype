@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84aa33ce89499c14b81259a47cedae80, type: 3}
-  m_Name: Bullet
+  m_Name: PoisonBullet
   m_EditorClassIdentifier: 
   _stats:
-    Power: 10
-    Speed: 2
+    Power: 5
+    Speed: 0.5
     Pierceable: 0
-  ProjectileType: 1
-  Prefab: {fileID: 5566901094579041880, guid: 291618aca74d8f84cb39d85432edf6db, type: 3}
+  ProjectileType: 3
+  Prefab: {fileID: 2762577011742404068, guid: e2c8c88efc39a6141b9f2686a94d5243, type: 3}

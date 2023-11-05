@@ -72,7 +72,7 @@ public class EnemySpawner : Singleton<EnemySpawner>
 
     private void Update()
     {
-        if(GameManager.Instance.GameState != GameState.PhaseTwo || !EnemySpawnTrigger.Instance.EnemySpawning)
+        if(/*GameManager.Instance.GameState != GameState.PhaseTwo ||*/ !EnemySpawnTrigger.Instance.EnemySpawning)
         {
             return;
         }
