@@ -389,7 +389,7 @@ GameObject:
   - component: {fileID: 6333970728007212635}
   - component: {fileID: 4762134699283753683}
   - component: {fileID: 8030033498743802031}
-  - component: {fileID: 3826638997914191319}
+  - component: {fileID: 4722546950445346102}
   m_Layer: 8
   m_Name: Spider
   m_TagString: Enemy
@@ -576,7 +576,7 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
---- !u!114 &3826638997914191319
+--- !u!114 &4722546950445346102
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -585,7 +585,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3826638997914191304}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf07f53bfe7f1484a9db16abefdd884d, type: 3}
+  m_Script: {fileID: 11500000, guid: 2028ab7d4fe83fa46bf12854b48b045f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ReachedEndOfPath: 0

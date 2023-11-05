@@ -22,6 +22,8 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     public int CurrentWayPoint = 1;
 
     protected Collider2D _collider;
+    protected Transform _attackPoint;
+    protected LayerMask _targetLayerMask;
 
     private ObjectPool<Enemy> _enemyPool;
     private EnemyAttackDistanceCheck _attackDistanceCheck;
@@ -30,7 +32,6 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     private Seeker _seeker;
     
     #endregion
-
 
     #region State Machine
     public EnemyStateMachine StateMachine { get; set; }
@@ -52,6 +53,7 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     private void Update()
     {
         FindTarget();
+        UpdateTargetLayerMark();
         StateMachine.CurrentEnemyState.FrameUpdate();
     }
 
@@ -71,6 +73,7 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
         _animator = GetComponent<Animator>();
         _attackDistanceCheck = GetComponentInChildren<EnemyAttackDistanceCheck>();
         _healthBar = GetComponentInChildren<HealthBar>();
+        _attackPoint = transform.Find("AttackPoint");
         IsChasingKid = true;
         SetupStateMachine();
     }
@@ -100,6 +103,16 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     #endregion
 
     #region Damageable
+    public virtual void StartAttack()
+    {
+
+    }
+
+    public virtual void EndAttack()
+    {
+
+    }
+
     public void TakeDamage(float damage)
     {
         CurrentHealth -= damage;
@@ -122,6 +135,19 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     public void UpdateHealthBar()
     {
         _healthBar.UpdateHealthBar(CurrentHealth, MaxHealth);
+    }
+
+    private void UpdateTargetLayerMark()
+    {
+        if (IsChasingKid)
+        {
+            _targetLayerMask = LayerMask.GetMask("Kid");
+        }
+        else
+        {
+            _targetLayerMask = LayerMask.GetMask("Toy");
+        }
+
     }
 
     #endregion

@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class Knight : Toy
 {
+    private bool _attack = true;
     private float _attackCircle = 0.2f;
     
     public override void StartAttack()
     {
-        base.StartAttack();
-        if (_timer > BaseStats.AttackSpeed)
+        if(!_attack)
         {
-            _timer = 0f;
-            TriggerAnimation(Toy.AnimationTriggerType.ToyAttack);
+            return;
         }
-        _timer += Time.deltaTime;
+        base.StartAttack();
+        TriggerAnimation(Toy.AnimationTriggerType.ToyAttack);
+        _attack = false;
+        StartCoroutine(AttackDelay());
     }
 
     public override void EndAttack()
@@ -29,5 +31,11 @@ public class Knight : Toy
                 damageable.TakeDamage(BaseStats.Power);
             }
         }
+    }
+
+    private IEnumerator AttackDelay()
+    {
+        yield return new WaitForSeconds(BaseStats.AttackSpeed);
+        _attack = true;
     }
 }

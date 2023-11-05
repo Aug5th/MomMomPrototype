@@ -4,16 +4,8 @@ using UnityEngine;
 
 public class EnemyAttackState : EnemyState
 {
-    [SerializeField] private LayerMask _targetLayerMask;
-    [SerializeField] private Transform _attackPoint;
-    private float _attackCircle = 0.5f;
-
-    private float _timer;
-
     public EnemyAttackState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
     {
-        _targetLayerMask = LayerMask.GetMask("Toy");
-        _attackPoint = enemy.transform.Find("AttackPoint");
     }
 
     public override void AnimationCallbackEvent(Enemy.AnimationTriggerType triggerType)
@@ -21,14 +13,13 @@ public class EnemyAttackState : EnemyState
         base.AnimationCallbackEvent(triggerType);
         if(triggerType == Enemy.AnimationTriggerType.EnemyAttack)
         {
-            EndAttack();
+            enemy.EndAttack();
         }
     }
 
     public override void EnterState()
     {
         base.EnterState();
-        _timer = enemy.BaseStats.AttackSpeed + 1f;
         enemy.Move(Vector2.zero);
         enemy.TriggerAnimation(Enemy.AnimationTriggerType.EnemyIdle);
     }
@@ -41,8 +32,7 @@ public class EnemyAttackState : EnemyState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-        UpdateTargetLayerMark();
-        StartAttack();
+        enemy.StartAttack();
         if (!enemy.IsWithinAttackDistance)
         {
             enemyStateMachine.ChangeState(enemy.ChaseState);
@@ -52,41 +42,5 @@ public class EnemyAttackState : EnemyState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-    }
-
-    private void StartAttack()
-    {
-        if(_timer > enemy.BaseStats.AttackSpeed)
-        {
-            _timer = 0f;
-            enemy.TriggerAnimation(Enemy.AnimationTriggerType.EnemyAttack);
-        }
-        _timer += Time.deltaTime;
-    }
-
-    private void UpdateTargetLayerMark()
-    {
-        if(enemy.IsChasingKid)
-        {
-            _targetLayerMask = LayerMask.GetMask("Kid");
-        }
-        else
-        {
-            _targetLayerMask = LayerMask.GetMask("Toy");
-        }
-       
-    }
-
-    public void EndAttack()
-    {
-        Collider2D[] toysToDamage = Physics2D.OverlapCircleAll(_attackPoint.position, _attackCircle, _targetLayerMask);
-        if (toysToDamage.Length > 0)
-        {
-            var damageable = toysToDamage[0].GetComponent<IDamageable>(); // get 0 means the enemy only attack single target
-            if (damageable != null)
-            {
-                damageable.TakeDamage(enemy.BaseStats.Power);
-            }
-        }
     }
 }

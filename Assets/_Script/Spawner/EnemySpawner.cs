@@ -7,11 +7,13 @@ public class EnemySpawner : Singleton<EnemySpawner>
 {
     [SerializeField] private List<Transform> _ghostSpawnPoints;
     [SerializeField] private List<Transform> _ratSpawnPoint;
+    [SerializeField] private List<Transform> _spiderSpawnPoint;
     [SerializeField] private int _numberGhostPerPoint = 3;
     [SerializeField] private Transform _holder;
 
     private ObjectPool<Enemy> _ghostPool;
     private ObjectPool<Enemy> _ratPool;
+    private ObjectPool<Enemy> _spiderPool;
 
     private bool _spawnEnemies = true;
     protected override void LoadComponents()
@@ -23,8 +25,21 @@ public class EnemySpawner : Singleton<EnemySpawner>
 
     private void LoadSpawnLocations()
     {
+        LoadSpiderSpawnPoint();
         LoadGhostSpawnLocation();
         LoadRatSpawnPoints();
+    }
+
+    private void LoadSpiderSpawnPoint()
+    {
+        Transform spawnPoints = transform.Find("Spider Spawn Points");
+        if (spawnPoints)
+        {
+            foreach (Transform spawnPoint in spawnPoints)
+            {
+                _spiderSpawnPoint.Add(spawnPoint);
+            }
+        }
     }
 
     private void LoadGhostSpawnLocation()
@@ -66,8 +81,9 @@ public class EnemySpawner : Singleton<EnemySpawner>
 
     private void Start()
     {
+        InitSpiderPool();
         InitGhostPool();
-        InitRatPool();
+        InitRatPool(); 
     }
 
     private void Update()
@@ -82,9 +98,28 @@ public class EnemySpawner : Singleton<EnemySpawner>
         {
             SpawnGhosts();
             SpawnRats();
+            SpawnSpiders();
             _spawnEnemies = false;
         }
         
+    }
+
+    private void InitSpiderPool()
+    {
+        _spiderPool = new ObjectPool<Enemy>(() =>
+        {
+            var spiderScript = ResourceSystem.Instance.GetEnemy(EnemyType.Spider);
+            return Instantiate(spiderScript.Prefab);
+        }, spider =>
+        {
+            spider.gameObject.SetActive(true);
+        }, spider =>
+        {
+            spider.gameObject.SetActive(false);
+        }, spider =>
+        {
+            Destroy(spider.gameObject);
+        }, false, 1, 5);
     }
 
     private void InitRatPool()
@@ -134,7 +169,7 @@ public class EnemySpawner : Singleton<EnemySpawner>
             case EnemyType.Ghost:
                 return _ghostPool.Get();
             case EnemyType.Spider:
-                return null;
+                return _spiderPool.Get();
         }
         return null;
     }
@@ -150,7 +185,7 @@ public class EnemySpawner : Singleton<EnemySpawner>
             case EnemyType.Ghost:
                 return _ghostPool;
             case EnemyType.Spider:
-                break;
+                return _spiderPool;
         }
         return null;
     }
@@ -172,6 +207,14 @@ public class EnemySpawner : Singleton<EnemySpawner>
         foreach (var point in _ratSpawnPoint)
         {
             SpawnEnemy(EnemyType.Rat,point.position);
+        }
+    }
+
+    private void SpawnSpiders()
+    {
+        foreach (var point in _spiderSpawnPoint)
+        {
+            SpawnEnemy(EnemyType.Spider, point.position);
         }
     }
     private void SpawnGhosts()

@@ -28,7 +28,7 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     public bool IsHealingMode;
     
     protected Transform _attackPoint;
-    protected float _timer;
+
     [SerializeField] protected LayerMask _targetLayerMask;
 
     #endregion
@@ -107,7 +107,6 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
         CurrentHealth = MaxHealth = stats.HealthPoint;
         _attackDistanceCheck.SetAttackDistance(stats.AttackRange);
         _healthBar.UpdateHealthBar(CurrentHealth, MaxHealth);
-        _timer = stats.AttackSpeed + 1f;
     }
 
     public void SetType(ToyType type) => ToyType = type;
