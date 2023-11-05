@@ -10,8 +10,9 @@ public class NomNom : Singleton<NomNom> , IDamageable
     public float CurrentHealth { get; set; }
     public float MaxHealth { get; set; }
 
-    public float MoveSpeed = 0.5f;
-    public float CurrentSpeed;
+    public float NormalSpeed = 0.5f;
+    public float SlowSpeed = 0.2f;
+    public float MoveSpeed;
 
     // Start is called before the first frame update
     [SerializeField] private Animator _animator;
@@ -19,7 +20,7 @@ public class NomNom : Singleton<NomNom> , IDamageable
     public void Move(Vector3 destination)
     {
         Vector2 direction = (destination - transform.position).normalized;
-        transform.position = Vector3.MoveTowards(transform.position, destination, CurrentSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, destination, MoveSpeed * Time.deltaTime);
         _animator.Play("walk");
         CheckForLeftOrRightFacing(direction);
     }
@@ -33,7 +34,7 @@ public class NomNom : Singleton<NomNom> , IDamageable
     {
         base.LoadComponents();
         _animator = GetComponent<Animator>();
-        CurrentSpeed = MoveSpeed;
+        MoveSpeed = NormalSpeed;
         Transform = transform;
         gameObject.SetActive(false);
     }
@@ -57,14 +58,14 @@ public class NomNom : Singleton<NomNom> , IDamageable
     public void TakeDamage(float damage)
     {
         Debug.Log("Nom Nom Take damage");
-        CurrentSpeed = 0.1f;
+        MoveSpeed = SlowSpeed;
         StartCoroutine(GetNormalSpeed());
     }
 
     private IEnumerator GetNormalSpeed()
     {
         yield return new WaitForSeconds(1);
-        CurrentSpeed = MoveSpeed;
+        MoveSpeed = NormalSpeed;
     }
 
     public void Die()

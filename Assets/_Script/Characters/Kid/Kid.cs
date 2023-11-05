@@ -13,6 +13,8 @@ public class Kid : Singleton<Kid> , IDamageable
     public bool IsFacingRight { get; set; }
     public float HealthPoint = 5f;
     public float MoveSpeed = 1f;
+    public float NormalSpeed = 1f;
+    public float SlowSpeed = 0.5f;
 
     [SerializeField] private Animator _animator;
     public void Die()
@@ -55,6 +57,7 @@ public class Kid : Singleton<Kid> , IDamageable
         _animator = GetComponent<Animator>();
         Transform = transform;
         CurrentHealth = MaxHealth = HealthPoint;
+        MoveSpeed = NormalSpeed;
     }
 
     private void Start()

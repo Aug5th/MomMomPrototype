@@ -7,7 +7,10 @@ public class Teddy : Singleton<Teddy>
     [SerializeField] private Animator _animator;
     private bool _shoot = true;
     private Transform _attackPoint;
+
     public float MoveSpeed = 1f;
+    public float NormalSpeed = 1f;
+    public float SlowSpeed = 0.5f;
     public bool IsFacingRight { get; set; }
     public bool IsAttackMode {get; set;}
     // Start is called before the first frame update
@@ -16,6 +19,7 @@ public class Teddy : Singleton<Teddy>
         base.LoadComponents();
         _animator = GetComponent<Animator>();
         _attackPoint = transform.Find("AttackPoint");
+        MoveSpeed = NormalSpeed;
     }
     private void Start()
     {

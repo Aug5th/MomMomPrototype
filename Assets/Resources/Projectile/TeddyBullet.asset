@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: TeddyBullet
   m_EditorClassIdentifier: 
   _stats:
-    Power: 2
-    Speed: 2
+    Power: 20
+    Speed: 5
     Pierceable: 0
   ProjectileType: 2
   Prefab: {fileID: 2455119490388901224, guid: b86d448de58626843a5b03433d31265e, type: 3}

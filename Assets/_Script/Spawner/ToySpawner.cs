@@ -8,8 +8,6 @@ public class ToySpawner : Singleton<ToySpawner>
 {
     [SerializeField] private List<Transform> _knightSpawnPoint;
     [SerializeField] private List<Transform> _rangerSpawnPoint;
-    [SerializeField] private List<Transform> _teddySpawnPoint;
-    [SerializeField] private GameObject _teddy;
     [SerializeField] private Transform _holder;
 
     private ObjectPool<Toy> _knightPool;
@@ -26,7 +24,6 @@ public class ToySpawner : Singleton<ToySpawner>
     {
         LoadRangerSpawnPoints();
         LoadKnightSpawnPoints();
-        LoadTeddySpawnPoints();
     }
 
     private void LoadRangerSpawnPoints()
@@ -57,20 +54,6 @@ public class ToySpawner : Singleton<ToySpawner>
         }
     }
 
-    private void LoadTeddySpawnPoints()
-    {
-        _teddySpawnPoint.Clear();
-
-        Transform spawnPoints = transform.Find("Teddy Spawn Points");
-        if (spawnPoints)
-        {
-            foreach (Transform spawnPoint in spawnPoints)
-            {
-                _teddySpawnPoint.Add(spawnPoint);
-            }
-        }
-    }
-
     private void LoadHolder()
     {
         if (_holder != null)
@@ -86,7 +69,6 @@ public class ToySpawner : Singleton<ToySpawner>
 
         SpawnKnights();
         SpawnRangers();
-        SpawnTeddy();
     }
 
     private void SpawnKnights()
@@ -103,11 +85,6 @@ public class ToySpawner : Singleton<ToySpawner>
         {
             SpawnRanger(point.position);
         }
-    }
-
-    private void SpawnTeddy()
-    {
-        GameObject teddy = Instantiate(_teddy, Kid.Instance.transform.position, Quaternion.identity);
     }
 
     private Toy SpawnKnight(Vector3 position)
