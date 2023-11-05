@@ -88,14 +88,18 @@ public class PhaseTwo : Singleton<PhaseTwo>
                 {
                     // Toys chase monsters
                     toySetting.SetHealingMode(false);
-                    PathSystem.Instance.StandStill(false); // Kid keep moving
+                    //PathSystem.Instance.StandStill(false); // Kid keep moving
+                    Teddy.Instance.MoveSpeed = Teddy.Instance.NormalSpeed;
+                    Kid.Instance.MoveSpeed = Kid.Instance.NormalSpeed;
                     //buttonAttack.interactable = true;
                 }
                 else
                 {
                     // Toys go to kid
                     toySetting.SetHealingMode(true);
-                    PathSystem.Instance.StandStill(true); // Kid stop moving
+                    //PathSystem.Instance.StandStill(true); // Kid stop moving
+                    Teddy.Instance.MoveSpeed = Teddy.Instance.SlowSpeed;
+                    Kid.Instance.MoveSpeed = Kid.Instance.SlowSpeed;
                     //buttonAttack.interactable = false;
                 }
             }
