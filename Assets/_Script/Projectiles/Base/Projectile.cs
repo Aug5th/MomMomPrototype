@@ -28,15 +28,20 @@ public class Projectile : MyMonoBehaviour
     #region Damageable
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
-        {
-            collision.GetComponent<IDamageable>().TakeDamage(BaseStats.Power);
-            ReleaseProjectile();
-        }
+        HandleTriggerCollider(collision);
     }
+   
     public void ReleaseProjectile()
     {
         _projectilePool.Release(this);
+    }
+
+    protected virtual void HandleTriggerCollider(Collider2D collider) 
+    { 
+        if(collider.CompareTag("CollisionObjects"))
+        {
+            ReleaseProjectile();
+        }
     }
     #endregion
 }

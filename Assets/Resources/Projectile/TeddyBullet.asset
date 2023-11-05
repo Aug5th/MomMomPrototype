@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84aa33ce89499c14b81259a47cedae80, type: 3}
-  m_Name: Arrow
+  m_Name: TeddyBullet
   m_EditorClassIdentifier: 
   _stats:
     Power: 2
-    Speed: 1
+    Speed: 2
     Pierceable: 0
-  ProjectileType: 1
-  Prefab: {fileID: 516886130769228886, guid: 7cb0bc5db5bd56846bc97b8d517ff6cc, type: 3}
+  ProjectileType: 2
+  Prefab: {fileID: 2455119490388901224, guid: b86d448de58626843a5b03433d31265e, type: 3}

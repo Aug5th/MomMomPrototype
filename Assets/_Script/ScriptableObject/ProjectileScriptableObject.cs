@@ -25,6 +25,7 @@ public struct ProjectileStats
 public enum ProjectileType
 {
     None = 0,
-    Arrow = 1,
-    Bullet = 2,
+    Bullet = 1,
+    TeddyBullet = 2,
+    PoisonBullet = 3,
 }
