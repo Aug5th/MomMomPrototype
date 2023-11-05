@@ -203,9 +203,9 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
                 {
                     if (Vector2.Distance(Rigidbody.position, target.transform.position) < Vector2.Distance(Rigidbody.position, Target.transform.position))
                     {                            
-
                         Target = target.transform;
                     }
+
                 }
             }
             else
@@ -240,8 +240,6 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
         {
             CancelInvoke("Healing");
             IsHealingMode = false;
-            Kid.Instance.ToyNeedToHealth -= 1;
-            StateMachine.ChangeState(ChaseState);
         }
     }
 
@@ -252,11 +250,7 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
             return;
         }
         IsHealingMode = healingMode;
-        if(healingMode)
-        {
-            Kid.Instance.ToyNeedToHealth += 1;
-            StateMachine.ChangeState(ChaseState);
-        }
+        StateMachine.ChangeState(ChaseState);
     }
 
     private void OnTriggerEnter2D(Collider2D collision) // Change to chase state when kid touch the toy

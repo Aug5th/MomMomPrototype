@@ -13,7 +13,6 @@ public class Kid : Singleton<Kid> , IDamageable
     public bool IsFacingRight { get; set; }
     public float HealthPoint = 5f;
     public float MoveSpeed = 1f;
-    public int ToyNeedToHealth = 0;
 
     [SerializeField] private Animator _animator;
     public void Die()
@@ -62,16 +61,6 @@ public class Kid : Singleton<Kid> , IDamageable
     {
         UpdateHealthBar();
     }
-
-    private void Update()
-    {
-        Debug.Log("so luong toy la: " + ToyNeedToHealth);
-        // if(ToyNeedToHealth == 0)
-        // {
-        //     PathSystem.Instance.StandStill(false);
-        // }
-    }
-
 
     public void CheckForLeftOrRightFacing(Vector2 velocity)
     {

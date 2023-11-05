@@ -36,7 +36,7 @@ public class ToyChaseState : ToyState
             toyStateMachine.ChangeState(toy.IdleState);
         }
         
-        if (toy.IsWithinAttackDistance)
+        if (toy.IsWithinAttackDistance && !toy.IsHealingMode)
         {
             toyStateMachine.ChangeState(toy.AttackState);
         }
@@ -54,7 +54,19 @@ public class ToyChaseState : ToyState
         {
             return;
         }
-        if (toy.CurrentWayPoint >= toy.PathMap.vectorPath.Count || toy.IsWithinAttackDistance || toy.IsInHealingZone)
+        if(toy.IsHealingMode)
+        {
+            if(toy.IsInHealingZone)
+            {
+                reachedEndOfPath = true;
+                return;
+            }
+            else
+            {
+                reachedEndOfPath = false;
+            }
+        }
+        else if (toy.CurrentWayPoint >= toy.PathMap.vectorPath.Count || toy.IsWithinAttackDistance)
         {
             reachedEndOfPath = true;
             return;
