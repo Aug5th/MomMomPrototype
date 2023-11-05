@@ -57,7 +57,7 @@ public class PathSystem : Singleton<PathSystem>
             return;
         }
 
-        Debug.Log("Path Following = " + PathFollowing);
+        //Debug.Log("Path Following = " + PathFollowing);
         if (PathFollowing)
         {
             if (NomNom.Instance.transform.position != _currentNomNomPosition)

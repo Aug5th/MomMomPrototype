@@ -30,6 +30,11 @@ public class ToyChaseState : ToyState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
+
+        if(toy.IsInHealingZone)
+        {
+            toyStateMachine.ChangeState(toy.IdleState);
+        }
         
         if (toy.IsWithinAttackDistance)
         {

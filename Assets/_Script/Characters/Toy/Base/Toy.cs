@@ -25,7 +25,7 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     private HealthBar _healthBar;
     private Animator _animator;
     private Seeker _seeker;
-    public bool _isHealingMode;
+    public bool IsHealingMode;
     
     protected Transform _attackPoint;
     protected float _timer;
@@ -48,7 +48,7 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     #region Start - Update - Fixed Update
     private void Start()
     {
-        _isHealingMode = false;
+        IsHealingMode = false;
         StateMachine.Initialize(IdleState);
         InvokeRepeating("UpdatePath", 0f, 0.5f);
     }
@@ -56,7 +56,7 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     private void Update()
     {
         FindTarget();
-        if(_isHealingMode && Vector2.Distance(Rigidbody.position, Kid.Instance.Transform.position) <= 0.2f)
+        if(IsHealingMode && Vector2.Distance(Rigidbody.position, Kid.Instance.Transform.position) <= 0.2f)
         {
             SetIsInHealingZone(true);
         }
@@ -64,6 +64,7 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
         {
             SetIsInHealingZone(false);
         }
+
         StateMachine.CurrentToyState.FrameUpdate();
     }
 
@@ -189,7 +190,7 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
         }
 
         GameObject[] allTargets = GameObject.FindGameObjectsWithTag("Enemy");
-        if(_isHealingMode) // If healing mode, go to kid
+        if(IsHealingMode) // If healing mode, go to kid
         {
            Target = Kid.Instance.Transform;
         }
@@ -233,19 +234,27 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
 
     private void Healing()
     {
-        CurrentHealth += Mathf.Max(BaseStats.HealingStrength, MaxHealth-CurrentHealth);
+        CurrentHealth += Mathf.Min(BaseStats.HealingStrength, MaxHealth-CurrentHealth);
         UpdateHealthBar();
-        if (CurrentHealth >= MaxHealth)
+        if (CurrentHealth == MaxHealth)
         {
             CancelInvoke("Healing");
+            IsHealingMode = false;
+            Kid.Instance.ToyNeedToHealth -= 1;
+            StateMachine.ChangeState(ChaseState);
         }
     }
 
     public void SetHealingMode(bool healingMode) // Set healing mode
     {
-        _isHealingMode = healingMode;
+        if(!IsActivated)
+        {
+            return;
+        }
+        IsHealingMode = healingMode;
         if(healingMode)
         {
+            Kid.Instance.ToyNeedToHealth += 1;
             StateMachine.ChangeState(ChaseState);
         }
     }
@@ -258,10 +267,6 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
             {
                 SetActivated(true);
                 StateMachine.ChangeState(ChaseState);
-            }
-            else
-            {
-                InvokeRepeating("Healing", 0f, 0.5f);
             }
         }
     }
@@ -289,7 +294,17 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
 
     public void SetIsInHealingZone(bool isInHealingZone)
     {
+        if(IsInHealingZone == isInHealingZone)
+        {
+            return;
+        }
+
         IsInHealingZone = isInHealingZone;
+
+        if(IsInHealingZone)
+        {
+            InvokeRepeating("Healing", 0f, 0.5f);
+        }
     }
 
     public void TriggerAnimation(AnimationTriggerType triggerType)

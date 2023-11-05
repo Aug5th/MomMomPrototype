@@ -16,6 +16,7 @@ public class ToyIdleState : ToyState
     public override void EnterState()
     {
         toy.TriggerAnimation(Toy.AnimationTriggerType.ToyIdle);
+        toy.Move(Vector2.zero);
         base.EnterState();
     }
 
