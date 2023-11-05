@@ -13,6 +13,7 @@ TagManager:
   - Floor
   - UI
   - EnemySpawnTrigger
+  - NomNom
   layers:
   - Default
   - TransparentFX
