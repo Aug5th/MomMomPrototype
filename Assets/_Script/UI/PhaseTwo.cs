@@ -15,9 +15,6 @@ public class PhaseTwo : Singleton<PhaseTwo>
     [SerializeField] private GameObject _fixingActiveImg;
     [SerializeField] private GameObject _fixingCancelImg;
 
-    [SerializeField] private float _attackCoolDown = 30f;
-    [SerializeField] private float _fixingCooldown = 30f;
-
     protected override void LoadComponents()
     {
         base.LoadComponents();

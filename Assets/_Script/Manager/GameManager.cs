@@ -16,6 +16,9 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private GameObject _phaseOneCamera;
     [SerializeField] private GameObject _phaseTwoCamera;
 
+    [SerializeField] private AudioClip _gameScreenAudio;
+    [SerializeField] private AudioClip _winScreenAudio;
+    [SerializeField] private AudioClip _loseScreenAudio;
 
     private void Start()
     {
@@ -47,6 +50,7 @@ public class GameManager : Singleton<GameManager>
     private void HandleVictoryState()
     {
         PauseGame();
+        AudioSystem.Instance.PlayMusic(_winScreenAudio);
         _losePanel.SetActive(false);
         _winPanel.SetActive(true);
         _phaseOnePanel.SetActive(false);
@@ -57,6 +61,7 @@ public class GameManager : Singleton<GameManager>
 
     private void HandleLoseState()
     {
+        AudioSystem.Instance.PlayMusic(_loseScreenAudio);
         PauseGame();
         _losePanel.SetActive(true);
         _winPanel.SetActive(false);
@@ -79,6 +84,7 @@ public class GameManager : Singleton<GameManager>
 
     private void HandlePhaseOneState()
     {
+        AudioSystem.Instance.PlayMusic(_gameScreenAudio);
         _losePanel.SetActive(false);
         _winPanel.SetActive(false);
         _phaseOnePanel.SetActive(true);
