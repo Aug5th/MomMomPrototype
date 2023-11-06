@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Knight
   m_EditorClassIdentifier: 
   _stats:
-    HealthPoint: 1000
+    HealthPoint: 500
     Power: 100
-    AttackSpeed: 0.5
+    AttackSpeed: 1
     AttackRange: 0.34
     MovementSpeed: 1
-    HealingStrength: 350
+    HealingStrength: 200
   ToyType: 2
   Prefab: {fileID: 6012594058053379359, guid: b01a106b9f5586a4699a7ea95341f98d, type: 3}

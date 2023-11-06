@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TeddyBullet
   m_EditorClassIdentifier: 
   _stats:
-    Power: 20
+    Power: 5
     Speed: 10
     Pierceable: 0
   ProjectileType: 2

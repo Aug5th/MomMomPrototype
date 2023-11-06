@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Ranger
   m_EditorClassIdentifier: 
   _stats:
-    HealthPoint: 800
+    HealthPoint: 350
     Power: 50
-    AttackSpeed: 0.25
+    AttackSpeed: 0.75
     AttackRange: 3.4
     MovementSpeed: 1
-    HealingStrength: 400
+    HealingStrength: 100
   ToyType: 1
   Prefab: {fileID: 4945401025429512482, guid: cf5e69550da42fb4db4f75242455846f, type: 3}
