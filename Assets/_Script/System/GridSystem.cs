@@ -93,6 +93,11 @@ public class GridSystem : Singleton<GridSystem>
                 _roadPath = _astar.CreatePath(_spots, _startPoint, new Vector2Int(gridPosition.x, gridPosition.y), 1000);
                 if(_roadPath == null)
                 {
+                    if (_isEndPointReach)
+                    {
+                        _isEndPointReach = false;
+                        PhaseOne.Instance.SetButtonsInteractable(false);
+                    }
                     return;
                 }
 
