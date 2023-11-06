@@ -37,12 +37,10 @@ public class PhaseTwo : Singleton<PhaseTwo>
     public void AttackCancelImagePress()
     {
         StopAttackMode();
-        _attackActiveImg.SetActive(true);
-        _attackCancelImg.SetActive(false);
     }
     public void FixingActiveImagePress()
     {
-        if (!EnemySpawnTrigger.Instance.EnemySpawning || _isAttacking)
+        if (!EnemySpawnTrigger.Instance.EnemySpawning/* || _isAttacking*/)
         {
             return;
         }
@@ -86,8 +84,8 @@ public class PhaseTwo : Singleton<PhaseTwo>
                     // Toys chase monsters
                     toySetting.SetHealingMode(false);
                     //PathSystem.Instance.StandStill(false); // Kid keep moving
-                    Teddy.Instance.MoveSpeed = Teddy.Instance.NormalSpeed;
-                    Kid.Instance.MoveSpeed = Kid.Instance.NormalSpeed;    
+                    //Teddy.Instance.MoveSpeed = Teddy.Instance.NormalSpeed;
+                    //Kid.Instance.MoveSpeed = Kid.Instance.NormalSpeed;    
                     //buttonAttack.interactable = true;
                 }
                 else
@@ -126,7 +124,7 @@ public class PhaseTwo : Singleton<PhaseTwo>
         _isFixing = false;
         PathSystem.Instance.StandStill(false);
 
-        StartCoroutine(AttackModeTimer());
+        //StartCoroutine(AttackModeTimer());
         _isAttacking = true;
 
     }
@@ -137,19 +135,21 @@ public class PhaseTwo : Singleton<PhaseTwo>
         Teddy.Instance.MoveSpeed = Teddy.Instance.NormalSpeed;
         Kid.Instance.MoveSpeed = Kid.Instance.NormalSpeed;
         _isAttacking = false;
+        _attackActiveImg.SetActive(true);
+        _attackCancelImg.SetActive(false);
     }
 
-    private IEnumerator AttackModeTimer()
-    {
-        yield return new WaitForSeconds(10f);
-        if(_isAttacking)
-        {
-            Teddy.Instance.IsAttackMode = false;
-            Teddy.Instance.MoveSpeed = 1f;
-            Kid.Instance.MoveSpeed = 1f;
-            _isAttacking = false;
-        }
-    }
+    //private IEnumerator AttackModeTimer()
+    //{
+    //    yield return new WaitForSeconds(10f);
+    //    if(_isAttacking)
+    //    {
+    //        Teddy.Instance.IsAttackMode = false;
+    //        Teddy.Instance.MoveSpeed = 1f;
+    //        Kid.Instance.MoveSpeed = 1f;
+    //        _isAttacking = false;
+    //    }
+    //}
 
 }
 

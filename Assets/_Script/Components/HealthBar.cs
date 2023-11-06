@@ -12,6 +12,7 @@ public class HealthBar : MyMonoBehaviour
     {
         base.LoadComponents();
         _slider = GetComponentInChildren<Slider>();
+        _slider.interactable = false;
     }
 
     public void UpdateHealthBar(float currentHealth, float maxHealth)

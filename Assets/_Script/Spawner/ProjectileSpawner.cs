@@ -48,7 +48,7 @@ public class ProjectileSpawner : Singleton<ProjectileSpawner>
         }, bullet =>
         {
             Destroy(bullet.gameObject);
-        }, false, 15, 30);
+        }, false, 50, 100);
     }
 
     private void InitTeddyBulletPool()
@@ -66,7 +66,7 @@ public class ProjectileSpawner : Singleton<ProjectileSpawner>
         }, bullet =>
         {
             Destroy(bullet.gameObject);
-        }, false, 15, 30);
+        }, false, 50, 100);
     }
 
     private void InitBulletPool()
@@ -84,7 +84,7 @@ public class ProjectileSpawner : Singleton<ProjectileSpawner>
         }, bullet =>
         {
             Destroy(bullet.gameObject);
-        }, false, 15, 30);
+        }, false, 50, 100);
     }
 
     public Projectile SpawnBullet()
@@ -104,7 +104,7 @@ public class ProjectileSpawner : Singleton<ProjectileSpawner>
         var bulletScript = ResourceSystem.Instance.GetProjectile(ProjectileType.TeddyBullet);
         bullet.SetStats(bulletScript.BaseStats);
         bullet.SetType(bulletScript.ProjectileType);
-        bullet.SetPool(_bulletPool);
+        bullet.SetPool(_teddyBulletPool);
         bullet.transform.SetParent(_holder);
         return bullet;
     }
@@ -115,7 +115,7 @@ public class ProjectileSpawner : Singleton<ProjectileSpawner>
         var bulletScript = ResourceSystem.Instance.GetProjectile(ProjectileType.PoisonBullet);
         bullet.SetStats(bulletScript.BaseStats);
         bullet.SetType(bulletScript.ProjectileType);
-        bullet.SetPool(_bulletPool);
+        bullet.SetPool(_poisonBulletPool);
         bullet.transform.SetParent(_holder);
         return bullet;
     }

@@ -37,7 +37,7 @@ public class Projectile : MyMonoBehaviour
     }
 
     protected virtual void HandleTriggerCollider(Collider2D collider) 
-    { 
+    {
         if(collider.CompareTag("CollisionObjects"))
         {
             ReleaseProjectile();

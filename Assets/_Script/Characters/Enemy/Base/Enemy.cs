@@ -211,7 +211,7 @@ public class Enemy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
                 foreach (GameObject target in allTargets)
                 {
                     Toy currentToy = target.GetComponent<Toy>();
-                    if(currentToy.IsActivated && !currentToy.IsHealingMode)
+                    if(currentToy.IsActivated /*&& !currentToy.IsHealingMode*/)
                     {
                         if(!foundTarget)
                         {

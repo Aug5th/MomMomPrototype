@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Spider
   m_EditorClassIdentifier: 
   _stats:
-    HealthPoint: 100
+    HealthPoint: 50
     Power: 10
-    AttackSpeed: 3
-    AttackRange: 1
-    MovementSpeed: 0.3
+    AttackSpeed: 1
+    AttackRange: 0.5
+    MovementSpeed: 0.75
     OnlyChaseKid: 0
   EnemyType: 3
   Prefab: {fileID: 4722546950445346102, guid: 15fbd41b2b606c94fb12e0e2b9ff246b, type: 3}

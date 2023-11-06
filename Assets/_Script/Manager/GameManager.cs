@@ -13,6 +13,8 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private GameObject _phaseTwoPanel;
     [SerializeField] private GameObject _losePanel;
     [SerializeField] private GameObject _winPanel;
+    [SerializeField] private GameObject _tutorialPanel;
+
     [SerializeField] private GameObject _phaseOneCamera;
     [SerializeField] private GameObject _phaseTwoCamera;
 
@@ -20,9 +22,21 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private AudioClip _winScreenAudio;
     [SerializeField] private AudioClip _loseScreenAudio;
 
+    private bool _switchCamera = true;
+
     private void Start()
     {
-        UpdateGameState(GameState.PhaseOne);
+        UpdateGameState(GameState.Tutorial);
+    }
+
+    private void Update()
+    {
+        if (EnemySpawnTrigger.Instance.EnemySpawning && _switchCamera)
+        {
+            _phaseOneCamera.SetActive(false);
+            _phaseTwoCamera.SetActive(true);
+            _switchCamera = false;
+        }
     }
     public void UpdateGameState(GameState newState)
     {
@@ -41,10 +55,23 @@ public class GameManager : Singleton<GameManager>
             case GameState.Victory:
                 HandleVictoryState();
                 break;
+            case GameState.Tutorial:
+                HandleTutorialState();
+                break;
             default:
                 break;
         }
         OnStateChanged?.Invoke(newState);
+    }
+
+    private void HandleTutorialState()
+    {
+        AudioSystem.Instance.PlayMusic(_gameScreenAudio);
+        _tutorialPanel.SetActive(true);
+        _losePanel.SetActive(false);
+        _winPanel.SetActive(false);
+        _phaseOnePanel.SetActive(false);
+        _phaseTwoPanel.SetActive(false);
     }
 
     private void HandleVictoryState()
@@ -53,6 +80,7 @@ public class GameManager : Singleton<GameManager>
         AudioSystem.Instance.PlayMusic(_winScreenAudio);
         _losePanel.SetActive(false);
         _winPanel.SetActive(true);
+        _tutorialPanel.SetActive(false);
         _phaseOnePanel.SetActive(false);
         _phaseOneCamera.SetActive(false);
         _phaseTwoPanel.SetActive(false);
@@ -65,6 +93,7 @@ public class GameManager : Singleton<GameManager>
         PauseGame();
         _losePanel.SetActive(true);
         _winPanel.SetActive(false);
+        _tutorialPanel.SetActive(false);
         _phaseOnePanel.SetActive(false);
         _phaseOneCamera.SetActive(false);
         _phaseTwoPanel.SetActive(false);
@@ -76,17 +105,19 @@ public class GameManager : Singleton<GameManager>
         _losePanel.SetActive(false);
         _winPanel.SetActive(false);
         _phaseOnePanel.SetActive(false);
-        _phaseOneCamera.SetActive(false);
+        _tutorialPanel.SetActive(false);
+        //_phaseOneCamera.SetActive(false);
         _phaseTwoPanel.SetActive(true);
-        _phaseTwoCamera.SetActive(true);
+        //_phaseTwoCamera.SetActive(true);
         Kid.Instance.UpdateHealthBar();
+        Teddy.Instance.IsAttackMode = true;
     }
 
     private void HandlePhaseOneState()
     {
-        AudioSystem.Instance.PlayMusic(_gameScreenAudio);
         _losePanel.SetActive(false);
         _winPanel.SetActive(false);
+        _tutorialPanel.SetActive(false);
         _phaseOnePanel.SetActive(true);
         _phaseOneCamera.SetActive(true);
         _phaseTwoPanel.SetActive(false);
@@ -110,4 +141,5 @@ public enum GameState
     PhaseTwo = 1,
     Lose = 2,
     Victory = 3,
+    Tutorial = 4,
 }

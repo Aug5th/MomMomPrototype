@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Rat
   m_EditorClassIdentifier: 
   _stats:
-    HealthPoint: 50
-    Power: 3
-    AttackSpeed: 1.5
-    AttackRange: 0.15
-    MovementSpeed: 0.5
+    HealthPoint: 100
+    Power: 10
+    AttackSpeed: 1
+    AttackRange: 0.2
+    MovementSpeed: 1
     OnlyChaseKid: 0
   EnemyType: 1
   Prefab: {fileID: 6021155044807047569, guid: 340e637382a33c94da239d4203466269, type: 3}

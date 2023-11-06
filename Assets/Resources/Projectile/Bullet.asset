@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Bullet
   m_EditorClassIdentifier: 
   _stats:
-    Power: 10
-    Speed: 2
+    Power: 40
+    Speed: 3
     Pierceable: 0
   ProjectileType: 1
   Prefab: {fileID: 5566901094579041880, guid: 291618aca74d8f84cb39d85432edf6db, type: 3}

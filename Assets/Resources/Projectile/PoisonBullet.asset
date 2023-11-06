@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: PoisonBullet
   m_EditorClassIdentifier: 
   _stats:
-    Power: 5
-    Speed: 0.5
+    Power: 7.5
+    Speed: 2.5
     Pierceable: 0
   ProjectileType: 3
   Prefab: {fileID: 2762577011742404068, guid: e2c8c88efc39a6141b9f2686a94d5243, type: 3}
