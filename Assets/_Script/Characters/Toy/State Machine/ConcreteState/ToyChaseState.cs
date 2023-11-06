@@ -33,7 +33,11 @@ public class ToyChaseState : ToyState
 
         if(toy.IsInHealingZone)
         {
-            toyStateMachine.ChangeState(toy.IdleState);
+            toy.CurrentSpeed = Kid.Instance.SlowSpeed;
+        }
+        else
+        {
+            toy.CurrentSpeed = toy.BaseStats.MovementSpeed;
         }
         
         if (toy.IsWithinAttackDistance && !toy.IsHealingMode)
@@ -56,12 +60,12 @@ public class ToyChaseState : ToyState
         }
         if(toy.IsHealingMode)
         {
-            if(toy.IsInHealingZone)
-            {
-                reachedEndOfPath = true;
-                return;
-            }
-            else
+            // if(toy.IsInHealingZone)
+            // {
+            //     reachedEndOfPath = true;
+            //     return;
+            // }
+            // else
             {
                 reachedEndOfPath = false;
             }
@@ -77,7 +81,7 @@ public class ToyChaseState : ToyState
         }
         Vector2 direction = ((Vector2)toy.PathMap.vectorPath[toy.CurrentWayPoint] - toy.Rigidbody.position).normalized;
 
-        Vector2 force = direction * toy.BaseStats.MovementSpeed;
+        Vector2 force = direction * toy.CurrentSpeed;
 
         toy.Move(force);
 

@@ -87,7 +87,7 @@ public class PhaseTwo : Singleton<PhaseTwo>
                     toySetting.SetHealingMode(false);
                     //PathSystem.Instance.StandStill(false); // Kid keep moving
                     Teddy.Instance.MoveSpeed = Teddy.Instance.NormalSpeed;
-                    Kid.Instance.MoveSpeed = Kid.Instance.NormalSpeed;
+                    Kid.Instance.MoveSpeed = Kid.Instance.NormalSpeed;    
                     //buttonAttack.interactable = true;
                 }
                 else

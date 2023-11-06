@@ -43,6 +43,7 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
     public Transform Target { get; set; }
     public bool IsActivated { get; set; }
     public bool IsInHealingZone { get; set; }
+    public float CurrentSpeed { get; set;}
     #endregion
 
     #region Start - Update - Fixed Update
@@ -176,7 +177,7 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
         if (!p.error) {
             PathMap = p;
             // Reset the waypoint counter so that we start to move towards the first point in the path
-            CurrentWayPoint = 0;
+            CurrentWayPoint = 1;
         }
     }
 
@@ -188,13 +189,13 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
             return;
         }
 
-        GameObject[] allTargets = GameObject.FindGameObjectsWithTag("Enemy");
         if(IsHealingMode) // If healing mode, go to kid
         {
            Target = Kid.Instance.Transform;
         }
         else
         {
+            GameObject[] allTargets = GameObject.FindGameObjectsWithTag("Enemy");
             if (allTargets.Length > 0)
             {
                 Target = allTargets[0].transform;
@@ -238,7 +239,7 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
         if (CurrentHealth == MaxHealth)
         {
             CancelInvoke("Healing");
-            IsHealingMode = false;
+            //IsHealingMode = false;
         }
     }
 
@@ -296,6 +297,7 @@ public class Toy : MyMonoBehaviour, IDamageable, IMoveable, ITriggerCheckable
 
         if(IsInHealingZone)
         {
+            Move(Vector2.zero);
             InvokeRepeating("Healing", 0f, 0.5f);
         }
     }
